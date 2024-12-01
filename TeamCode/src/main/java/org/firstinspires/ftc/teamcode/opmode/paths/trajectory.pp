@@ -1,0 +1,1 @@
+{"startPoint":{"x":9.757,"y":84.983,"heading":"constant","degrees":0},"lines":[{"endPoint":{"x":36.668,"y":84.983,"heading":"tangential","reverse":false},"controlPoints":[],"color":"#5876BC"}]}
