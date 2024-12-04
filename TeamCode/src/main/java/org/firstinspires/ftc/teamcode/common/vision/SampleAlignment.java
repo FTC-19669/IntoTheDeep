@@ -15,8 +15,8 @@ public class SampleAlignment implements VisionProcessor {
     private static final Scalar UPPER_YELLOW = new Scalar(30, 255, 255);
     private static final double CAMERA_FOV_HORIZONTAL = 60.0;
 
-    private Rect largestRect = null; // Store the largest rectangle for use in onDrawFrame
-    private double angleToRotate = 0.0; // Store the calculated angle for external access
+    private Rect largestRect = null;
+    private double angleToRotate = 0.0;
 
     @Override
     public Object processFrame(Mat input, long captureTimeNanos) {
@@ -24,13 +24,9 @@ public class SampleAlignment implements VisionProcessor {
         Mat mask = new Mat();
         Mat hierarchy = new Mat();
 
-        // Convert to HSV color space
         Imgproc.cvtColor(input, hsvMat, Imgproc.COLOR_RGB2HSV);
-
-        // Create a mask for yellow objects
         Core.inRange(hsvMat, LOWER_YELLOW, UPPER_YELLOW, mask);
 
-        // Find contours
         java.util.List<MatOfPoint> contours = new java.util.ArrayList<>();
         Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
@@ -48,10 +44,8 @@ public class SampleAlignment implements VisionProcessor {
         }
 
         if (largestRect != null) {
-            // Draw a rectangle around the largest yellow object
             Imgproc.rectangle(input, largestRect, new Scalar(0, 255, 0), 2);
 
-            // Calculate angle offset
             double sampleCenterX = largestRect.x + (largestRect.width / 2.0);
             double frameCenterX = input.cols() / 2.0;
             double pixelOffset = sampleCenterX - frameCenterX;
@@ -61,7 +55,6 @@ public class SampleAlignment implements VisionProcessor {
             angleToRotate = 0.0;
         }
 
-        // Release memory
         hsvMat.release();
         mask.release();
         hierarchy.release();
@@ -82,7 +75,6 @@ public class SampleAlignment implements VisionProcessor {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(5.0f * scaleCanvasDensity);
 
-            // Scale OpenCV rectangle to canvas coordinates
             RectF scaledRect = new RectF(
                     largestRect.x * scaleBmpPxToCanvasPx,
                     largestRect.y * scaleBmpPxToCanvasPx,
@@ -90,12 +82,10 @@ public class SampleAlignment implements VisionProcessor {
                     (largestRect.y + largestRect.height) * scaleBmpPxToCanvasPx
             );
 
-            // Draw the rectangle
             canvas.drawRect(scaledRect, paint);
         }
     }
 
-    // Getter for the calculated angle
     public double getAngleToRotate() {
         return angleToRotate;
     }
