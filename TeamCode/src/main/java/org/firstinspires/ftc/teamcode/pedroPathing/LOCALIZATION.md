@@ -1,5 +1,5 @@
 ## Overview
-This is the localization system developed for the Pedro Pathing path follower. These localizers use
+This is the localization system developed for the Pedro Pathing path mecanumDrive. These localizers use
 the pose exponential method of localization. It's basically a way of turning movements from the
 robot's coordinate frame to the global coordinate frame. If you're interested in reading more about
 it, then check out pages 177 - 183 of [Controls Engineering in the FIRST Robotics Competition](https://file.tavsys.net/control/controls-engineering-in-frc.pdf)

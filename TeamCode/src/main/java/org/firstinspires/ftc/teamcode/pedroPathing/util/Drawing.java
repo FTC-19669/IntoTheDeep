@@ -4,7 +4,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.canvas.Canvas;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 
-import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
+import org.firstinspires.ftc.teamcode.common.hardware.MecanumDrive;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
@@ -28,16 +28,16 @@ public class Drawing {
      * This draws everything that will be used in the Follower's telemetryDebug() method. This takes
      * a Follower as an input, so an instance of the DashbaordDrawingHandler class is not needed.
      *
-     * @param follower
+     * @param mecanumDrive
      */
-    public static void drawDebug(Follower follower) {
-        if (follower.getCurrentPath() != null) {
-            drawPath(follower.getCurrentPath(), "#3F51B5");
-            Point closestPoint = follower.getPointFromPath(follower.getCurrentPath().getClosestPointTValue());
-            drawRobot(new Pose(closestPoint.getX(), closestPoint.getY(), follower.getCurrentPath().getHeadingGoal(follower.getCurrentPath().getClosestPointTValue())), "#3F51B5");
+    public static void drawDebug(MecanumDrive mecanumDrive) {
+        if (mecanumDrive.getCurrentPath() != null) {
+            drawPath(mecanumDrive.getCurrentPath(), "#3F51B5");
+            Point closestPoint = mecanumDrive.getPointFromPath(mecanumDrive.getCurrentPath().getClosestPointTValue());
+            drawRobot(new Pose(closestPoint.getX(), closestPoint.getY(), mecanumDrive.getCurrentPath().getHeadingGoal(mecanumDrive.getCurrentPath().getClosestPointTValue())), "#3F51B5");
         }
-        drawPoseHistory(follower.getDashboardPoseTracker(), "#4CAF50");
-        drawRobot(follower.getPose(), "#4CAF50");
+        drawPoseHistory(mecanumDrive.getDashboardPoseTracker(), "#4CAF50");
+        drawRobot(mecanumDrive.getPose(), "#4CAF50");
 
         sendPacket();
     }

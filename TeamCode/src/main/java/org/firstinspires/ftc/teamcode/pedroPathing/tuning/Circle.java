@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
+import org.firstinspires.ftc.teamcode.common.hardware.MecanumDrive;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierCurve;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
@@ -30,7 +30,7 @@ public class Circle extends OpMode {
 
     public static double RADIUS = 10;
 
-    private Follower follower;
+    private MecanumDrive mecanumDrive;
 
     private PathChain circle;
 
@@ -40,16 +40,16 @@ public class Circle extends OpMode {
      */
     @Override
     public void init() {
-        follower = new Follower(hardwareMap);
+        mecanumDrive = new MecanumDrive(hardwareMap);
 
-        circle = follower.pathBuilder()
+        circle = mecanumDrive.pathBuilder()
                 .addPath(new BezierCurve(new Point(0,0, Point.CARTESIAN), new Point(RADIUS,0, Point.CARTESIAN), new Point(RADIUS, RADIUS, Point.CARTESIAN)))
                 .addPath(new BezierCurve(new Point(RADIUS, RADIUS, Point.CARTESIAN), new Point(RADIUS,2*RADIUS, Point.CARTESIAN), new Point(0,2*RADIUS, Point.CARTESIAN)))
                 .addPath(new BezierCurve(new Point(0,2*RADIUS, Point.CARTESIAN), new Point(-RADIUS,2*RADIUS, Point.CARTESIAN), new Point(-RADIUS, RADIUS, Point.CARTESIAN)))
                 .addPath(new BezierCurve(new Point(-RADIUS, RADIUS, Point.CARTESIAN), new Point(-RADIUS,0, Point.CARTESIAN), new Point(0,0, Point.CARTESIAN)))
                 .build();
 
-        follower.followPath(circle);
+        mecanumDrive.followPath(circle);
 
         telemetryA = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
         telemetryA.addLine("This will run in a roughly circular shape of radius " + RADIUS
@@ -64,11 +64,11 @@ public class Circle extends OpMode {
      */
     @Override
     public void loop() {
-        follower.update();
-        if (follower.atParametricEnd()) {
-            follower.followPath(circle);
+        mecanumDrive.update();
+        if (mecanumDrive.atParametricEnd()) {
+            mecanumDrive.followPath(circle);
         }
 
-        follower.telemetryDebug(telemetryA);
+        mecanumDrive.telemetryDebug(telemetryA);
     }
 }

@@ -1,23 +1,19 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.follower;
+package org.firstinspires.ftc.teamcode.common.hardware;
 
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.drivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.drivePIDFSwitch;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.forwardZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.headingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.headingPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.lateralZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftRearMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightRearMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.secondaryDrivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.secondaryHeadingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.secondaryTranslationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.translationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.translationalPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.useSecondaryDrivePID;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.useSecondaryHeadingPID;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.useSecondaryTranslationalPID;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.drivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.drivePIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.forwardZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.headingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.headingPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.lateralZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryDrivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryHeadingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryTranslationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.translationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.translationalPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryDrivePID;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryHeadingPID;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryTranslationalPID;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -28,8 +24,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.pedroPathing.follower.DriveVectorScaler;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
-import org.firstinspires.ftc.teamcode.pedroPathing.localization.PoseUpdater;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierPoint;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
@@ -38,13 +34,14 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathCallback;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
-import org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants;
+import org.firstinspires.ftc.teamcode.common.util.DriveConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.DashboardPoseTracker;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.Drawing;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.FilteredPIDFController;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilter;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFController;
 
+import org.firstinspires.ftc.teamcode.common.util.Configuration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,8 +55,18 @@ import java.util.List;
  * @author Harrison Womack - 10158 Scott's Bots
  * @version 1.0, 3/4/2024
  */
+
+/**
+ * This is the Follower class. It handles the actual following of the paths and all the on-the-fly
+ * calculations that are relevant for movement.
+ *
+ * @author Anyi Lin - 10158 Scott's Bots
+ * @author Aaron Yang - 10158 Scott's Bots
+ * @author Harrison Womack - 10158 Scott's Bots
+ * @version 1.0, 3/4/2024
+ */
 @Config
-public class Follower {
+public class MecanumDrive {
     private HardwareMap hardwareMap;
 
     private DcMotorEx leftFront;
@@ -79,8 +86,8 @@ public class Follower {
 
     private PathChain currentPathChain;
 
-    private final int BEZIER_CURVE_BINARY_STEP_LIMIT = FollowerConstants.BEZIER_CURVE_BINARY_STEP_LIMIT;
-    private final int AVERAGED_VELOCITY_SAMPLE_NUMBER = FollowerConstants.AVERAGED_VELOCITY_SAMPLE_NUMBER;
+    private final int BEZIER_CURVE_BINARY_STEP_LIMIT = DriveConstants.BEZIER_CURVE_BINARY_STEP_LIMIT;
+    private final int AVERAGED_VELOCITY_SAMPLE_NUMBER = DriveConstants.AVERAGED_VELOCITY_SAMPLE_NUMBER;
 
     private int chainIndex;
 
@@ -96,8 +103,8 @@ public class Follower {
     private double maxPower = 1;
     private double previousSecondaryTranslationalIntegral;
     private double previousTranslationalIntegral;
-    private double holdPointTranslationalScaling = FollowerConstants.holdPointTranslationalScaling;
-    private double holdPointHeadingScaling = FollowerConstants.holdPointHeadingScaling;
+    private double holdPointTranslationalScaling = DriveConstants.holdPointTranslationalScaling;
+    private double holdPointHeadingScaling = DriveConstants.holdPointHeadingScaling;
     public double driveError;
     public double headingError;
 
@@ -122,16 +129,16 @@ public class Follower {
     public Vector centripetalVector;
     public Vector correctiveVector;
 
-    private PIDFController secondaryTranslationalPIDF = new PIDFController(FollowerConstants.secondaryTranslationalPIDFCoefficients);
-    private PIDFController secondaryTranslationalIntegral = new PIDFController(FollowerConstants.secondaryTranslationalIntegral);
-    private PIDFController translationalPIDF = new PIDFController(FollowerConstants.translationalPIDFCoefficients);
-    private PIDFController translationalIntegral = new PIDFController(FollowerConstants.translationalIntegral);
-    private PIDFController secondaryHeadingPIDF = new PIDFController(FollowerConstants.secondaryHeadingPIDFCoefficients);
-    private PIDFController headingPIDF = new PIDFController(FollowerConstants.headingPIDFCoefficients);
-    private FilteredPIDFController secondaryDrivePIDF = new FilteredPIDFController(FollowerConstants.secondaryDrivePIDFCoefficients);
-    private FilteredPIDFController drivePIDF = new FilteredPIDFController(FollowerConstants.drivePIDFCoefficients);
+    private PIDFController secondaryTranslationalPIDF = new PIDFController(DriveConstants.secondaryTranslationalPIDFCoefficients);
+    private PIDFController secondaryTranslationalIntegral = new PIDFController(DriveConstants.secondaryTranslationalIntegral);
+    private PIDFController translationalPIDF = new PIDFController(DriveConstants.translationalPIDFCoefficients);
+    private PIDFController translationalIntegral = new PIDFController(DriveConstants.translationalIntegral);
+    private PIDFController secondaryHeadingPIDF = new PIDFController(DriveConstants.secondaryHeadingPIDFCoefficients);
+    private PIDFController headingPIDF = new PIDFController(DriveConstants.headingPIDFCoefficients);
+    private FilteredPIDFController secondaryDrivePIDF = new FilteredPIDFController(DriveConstants.secondaryDrivePIDFCoefficients);
+    private FilteredPIDFController drivePIDF = new FilteredPIDFController(DriveConstants.drivePIDFCoefficients);
 
-    private KalmanFilter driveKalmanFilter = new KalmanFilter(FollowerConstants.driveKalmanFilterParameters);
+    private KalmanFilter driveKalmanFilter = new KalmanFilter(DriveConstants.driveKalmanFilterParameters);
     private double[] driveErrors;
     private double rawDriveError;
     private double previousRawDriveError;
@@ -142,15 +149,7 @@ public class Follower {
     public static boolean useHeading = true;
     public static boolean useDrive = true;
 
-    /**
-     * This creates a new Follower given a HardwareMap.
-     *
-     * @param hardwareMap HardwareMap required
-     */
-    public Follower(HardwareMap hardwareMap) {
-        this.hardwareMap = hardwareMap;
-        initialize();
-    }
+    public Configuration names = new Configuration();
 
     /**
      * This initializes the follower.
@@ -158,18 +157,21 @@ public class Follower {
      * initialized and their behavior is set, and the variables involved in approximating first and
      * second derivatives for teleop are set.
      */
-    public void initialize() {
-        driveVectorScaler = new DriveVectorScaler(FollowerConstants.frontLeftVector);
+    public void initializePedro(HardwareMap hardwareMap) {
+        this.hardwareMap = hardwareMap;
+
+        driveVectorScaler = new DriveVectorScaler(DriveConstants.frontLeftVector);
         poseUpdater = new PoseUpdater(hardwareMap);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, leftFrontMotorName);
-        leftRear = hardwareMap.get(DcMotorEx.class, leftRearMotorName);
-        rightRear = hardwareMap.get(DcMotorEx.class, rightRearMotorName);
-        rightFront = hardwareMap.get(DcMotorEx.class, rightFrontMotorName);
+        leftFront = hardwareMap.get(DcMotorEx.class, names.leftFront);
+        leftRear = hardwareMap.get(DcMotorEx.class, names.leftRear);
+        rightRear = hardwareMap.get(DcMotorEx.class, names.rightRear);
+        rightFront = hardwareMap.get(DcMotorEx.class, names.rightFront);
 
         // TODO: Make sure that this is the direction your motors need to be reversed in.
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motors = Arrays.asList(leftFront, leftRear, rightFront, rightRear);
 
@@ -180,7 +182,7 @@ public class Follower {
         }
 
         for (DcMotorEx motor : motors) {
-            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
         dashboardPoseTracker = new DashboardPoseTracker(poseUpdater);
@@ -883,7 +885,7 @@ public class Follower {
             curvature = (yDoublePrime) / (Math.pow(Math.sqrt(1 + Math.pow(yPrime, 2)), 3));
         }
         if (Double.isNaN(curvature)) return new Vector();
-        centripetalVector = new Vector(MathFunctions.clamp(FollowerConstants.centripetalScaling * FollowerConstants.mass * Math.pow(MathFunctions.dotProduct(poseUpdater.getVelocity(), MathFunctions.normalizeVector(currentPath.getClosestPointTangentVector())), 2) * curvature, -1, 1), currentPath.getClosestPointTangentVector().getTheta() + Math.PI / 2 * MathFunctions.getSign(currentPath.getClosestPointNormalVector().getTheta()));
+        centripetalVector = new Vector(MathFunctions.clamp(DriveConstants.centripetalScaling * DriveConstants.mass * Math.pow(MathFunctions.dotProduct(poseUpdater.getVelocity(), MathFunctions.normalizeVector(currentPath.getClosestPointTangentVector())), 2) * curvature, -1, 1), currentPath.getClosestPointTangentVector().getTheta() + Math.PI / 2 * MathFunctions.getSign(currentPath.getClosestPointNormalVector().getTheta()));
         return centripetalVector;
     }
 

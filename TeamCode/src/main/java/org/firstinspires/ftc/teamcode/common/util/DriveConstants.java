@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.tuning;
+package org.firstinspires.ftc.teamcode.common.util;
 
 import com.acmerobotics.dashboard.config.Config;
 
@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilterParameters;
  * @version 1.0, 3/4/2024
  */
 @Config
-public class FollowerConstants {
+public class DriveConstants {
 
     // This section is for configuring your motors
     public static String leftFrontMotorName = "leftFront";

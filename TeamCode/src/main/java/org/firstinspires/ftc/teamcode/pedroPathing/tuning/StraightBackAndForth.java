@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
+import org.firstinspires.ftc.teamcode.common.hardware.MecanumDrive;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierLine;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
@@ -34,7 +34,7 @@ public class StraightBackAndForth extends OpMode {
 
     private boolean forward = true;
 
-    private Follower follower;
+    private MecanumDrive mecanumDrive;
 
     private Path forwards;
     private Path backwards;
@@ -45,14 +45,14 @@ public class StraightBackAndForth extends OpMode {
      */
     @Override
     public void init() {
-        follower = new Follower(hardwareMap);
+        mecanumDrive = new MecanumDrive(hardwareMap);
 
         forwards = new Path(new BezierLine(new Point(0,0, Point.CARTESIAN), new Point(DISTANCE,0, Point.CARTESIAN)));
         forwards.setConstantHeadingInterpolation(0);
         backwards = new Path(new BezierLine(new Point(DISTANCE,0, Point.CARTESIAN), new Point(0,0, Point.CARTESIAN)));
         backwards.setConstantHeadingInterpolation(0);
 
-        follower.followPath(forwards);
+        mecanumDrive.followPath(forwards);
 
         telemetryA = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
         telemetryA.addLine("This will run the robot in a straight line going " + DISTANCE
@@ -67,18 +67,18 @@ public class StraightBackAndForth extends OpMode {
      */
     @Override
     public void loop() {
-        follower.update();
-        if (!follower.isBusy()) {
+        mecanumDrive.update();
+        if (!mecanumDrive.isBusy()) {
             if (forward) {
                 forward = false;
-                follower.followPath(backwards);
+                mecanumDrive.followPath(backwards);
             } else {
                 forward = true;
-                follower.followPath(forwards);
+                mecanumDrive.followPath(forwards);
             }
         }
 
         telemetryA.addData("going forward", forward);
-        follower.telemetryDebug(telemetryA);
+        mecanumDrive.telemetryDebug(telemetryA);
     }
 }

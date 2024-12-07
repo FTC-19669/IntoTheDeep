@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.examples;
 
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftRearMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightRearMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.leftFrontMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.leftRearMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.rightFrontMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.rightRearMotorName;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
+import org.firstinspires.ftc.teamcode.common.hardware.MecanumDrive;
 
 /**
  * This is the TeleOpEnhancements OpMode. It is an example usage of the TeleOp enhancements that
@@ -23,7 +23,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
  */
 @TeleOp(name = "Pedro Pathing TeleOp Enhancements", group = "Test")
 public class TeleOpEnhancements extends OpMode {
-    private Follower follower;
+    private MecanumDrive mecanumDrive;
 
     private DcMotorEx leftFront;
     private DcMotorEx leftRear;
@@ -35,7 +35,7 @@ public class TeleOpEnhancements extends OpMode {
      */
     @Override
     public void init() {
-        follower = new Follower(hardwareMap);
+        mecanumDrive = new MecanumDrive(hardwareMap);
 
         leftFront = hardwareMap.get(DcMotorEx.class, leftFrontMotorName);
         leftRear = hardwareMap.get(DcMotorEx.class, leftRearMotorName);
@@ -47,7 +47,7 @@ public class TeleOpEnhancements extends OpMode {
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        follower.startTeleopDrive();
+        mecanumDrive.startTeleopDrive();
     }
 
     /**
@@ -56,7 +56,7 @@ public class TeleOpEnhancements extends OpMode {
      */
     @Override
     public void loop() {
-        follower.setTeleOpMovementVectors(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
-        follower.update();
+        mecanumDrive.setTeleOpMovementVectors(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
+        mecanumDrive.update();
     }
 }

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.localization.localizers;
+package org.firstinspires.ftc.teamcode.common.hardware;
 
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -7,7 +7,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.GoBildaPinpointDriver;
-import org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
@@ -42,7 +41,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
  * @author Ethan Doak - Gobilda
  * @version 1.0, 10/2/2024
  */
-public class PinpointLocalizer extends Localizer {
+public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer {
     private HardwareMap hardwareMap;
     private GoBildaPinpointDriver odo;
     private double previousHeading;
@@ -54,7 +53,7 @@ public class PinpointLocalizer extends Localizer {
      *
      * @param map the HardwareMap
      */
-    public PinpointLocalizer(HardwareMap map){ this(map, new Pose());}
+    public Localizer(HardwareMap map){ this(map, new Pose());}
 
     /**
      * This creates a new PinpointLocalizer from a HardwareMap and a Pose, with the Pose
@@ -63,7 +62,7 @@ public class PinpointLocalizer extends Localizer {
      * @param map the HardwareMap
      * @param setStartPose the Pose to start from
      */
-    public PinpointLocalizer(HardwareMap map, Pose setStartPose){
+    public Localizer(HardwareMap map, Pose setStartPose){
         hardwareMap = map;
         // TODO: replace this with your Pinpoint port
         odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");

@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.localization.localizers;
 
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftRearMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightFrontMotorName;
-import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightRearMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.leftFrontMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.leftRearMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.rightFrontMotorName;
+import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.rightRearMotorName;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotorEx;

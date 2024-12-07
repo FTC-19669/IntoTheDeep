@@ -1,5 +1,5 @@
 ## Basic Ideas
-Pedro Pathing is a reactive vector based follower. What this means is that the robot dynamically
+Pedro Pathing is a reactive vector based mecanumDrive. What this means is that the robot dynamically
 calculates a set of vectors that are required to correct error as well as to move forward and applies them.
 
 The robot calculates:
@@ -17,9 +17,9 @@ Why use Pedro Pathing? Why not something else like Road Runner or Pure Pursuit?
 
 * Why not Pure Pursuit?
   * Pure Pursuit searches for the farthest point on the path that's within a certain radius from the robot. Pure Pursuit will then go in a straight line to that point. This poses several problems, as a small search radius will cause some oscillations on corners, and a large search radius will cut corners on paths, which makes the paths inaccurate to real life.
-  * Pedro Pathing instead corrects to the closest point on the path while still following the path. This ensures that the follower will stay on the path while still being able to move forward along the path without cutting corners or encountering oscillation issues.
+  * Pedro Pathing instead corrects to the closest point on the path while still following the path. This ensures that the mecanumDrive will stay on the path while still being able to move forward along the path without cutting corners or encountering oscillation issues.
 * Why not Road Runner?
-  * Road Runner is a motion profile based follower, which means that a set of instructions for motor powers are calculated for each path beforehand and then run. During this motion profile, Road Runner can struggle to correct. This can be sufficient for many situations, but if the robot encounters an obstacle or wheel slippage, it may be unable to correct in time.
+  * Road Runner is a motion profile based mecanumDrive, which means that a set of instructions for motor powers are calculated for each path beforehand and then run. During this motion profile, Road Runner can struggle to correct. This can be sufficient for many situations, but if the robot encounters an obstacle or wheel slippage, it may be unable to correct in time.
   * Pedro Pathing instead dynamically corrects throughout the path. The movement vectors are calculated at every point along the path, and because of this, the path can even be changed midway through and Pedro Pathing will still be able to correct. Since correction occurs throughout the path, the error correction isn't concentrated on the end of the path and therefore the robot is able to better minimize error.
 
 ## How Does Pedro Path?

@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration;
 
 
-import org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants;
+import org.firstinspires.ftc.teamcode.common.util.DriveConstants;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This is the BezierCurve class. This class handles the creation of Bezier curves, which are used
@@ -27,7 +26,7 @@ public class BezierCurve {
 
     private Vector endTangent = new Vector();
 
-    private final int APPROXIMATION_STEPS = FollowerConstants.APPROXIMATION_STEPS;
+    private final int APPROXIMATION_STEPS = DriveConstants.APPROXIMATION_STEPS;
 
     private final int DASHBOARD_DRAWING_APPROXIMATION_STEPS = 100;
 
