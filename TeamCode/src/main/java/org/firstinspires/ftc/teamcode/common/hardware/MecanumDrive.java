@@ -163,10 +163,10 @@ public class MecanumDrive {
         driveVectorScaler = new DriveVectorScaler(DriveConstants.frontLeftVector);
         poseUpdater = new PoseUpdater(hardwareMap);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, names.leftFront);
-        leftRear = hardwareMap.get(DcMotorEx.class, names.leftRear);
-        rightRear = hardwareMap.get(DcMotorEx.class, names.rightRear);
-        rightFront = hardwareMap.get(DcMotorEx.class, names.rightFront);
+        leftFront = hardwareMap.get(DcMotorEx.class, DriveConstants.leftFrontMotorName);
+        leftRear = hardwareMap.get(DcMotorEx.class, DriveConstants.leftRearMotorName);
+        rightRear = hardwareMap.get(DcMotorEx.class, DriveConstants.rightRearMotorName);
+        rightFront = hardwareMap.get(DcMotorEx.class, DriveConstants.rightFrontMotorName);
 
         // TODO: Make sure that this is the direction your motors need to be reversed in.
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
