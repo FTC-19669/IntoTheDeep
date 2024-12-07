@@ -25,7 +25,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.NanoTimer;
  *
  * forward on robot is the x positive direction
  *
-*                         forward (x positive)
+ *                         forward (x positive)
  *                                △
  *                                |
  *                                |
@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.NanoTimer;
  *                         |              |
  *                         |              |
  *                         |           || |
- *  left (y positive) <--- |           || |  
+ *  left (y positive) <--- |           || | 
  *                         |     ____     |
  *                         |     ----     |
  *                         \--------------/
@@ -113,7 +113,7 @@ public class TwoWheelPinpointIMULocalizer extends Localizer {
      */
     @Override
     public Pose getPose() {
-        return MathFunctions.addPoses(startPose, displacementPose);
+        return new Pose(startPose.getX()+displacementPose.getX(), startPose.getY()+displacementPose.getY(),displacementPose.getHeading());
     }
 
     /**
@@ -297,4 +297,3 @@ public class TwoWheelPinpointIMULocalizer extends Localizer {
         pinpoint.resetPosAndIMU();
     }
 }
-

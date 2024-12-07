@@ -10,7 +10,8 @@ public class AutonomousHelpers {
 
     public enum HeadingInterpolation {
         LINEAR,
-        CONSTANT
+        CONSTANT,
+        TANGENT
     }
 
     public static Path buildLine(Pose startPose, Pose endPose, HeadingInterpolation interpolation) {
@@ -50,6 +51,9 @@ public class AutonomousHelpers {
                 break;
             case CONSTANT:
                 path.setConstantHeadingInterpolation(startHeading);
+                break;
+            case TANGENT:
+                path.setTangentHeadingInterpolation();
                 break;
         }
     }
