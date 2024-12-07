@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.tuning;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -45,7 +46,8 @@ public class CurvedBackAndForth extends OpMode {
      */
     @Override
     public void init() {
-        mecanumDrive = new MecanumDrive(hardwareMap);
+        mecanumDrive = new MecanumDrive();
+        mecanumDrive.initializePedro(hardwareMap);
 
         forwards = new Path(new BezierCurve(new Point(0,0, Point.CARTESIAN), new Point(Math.abs(DISTANCE),0, Point.CARTESIAN), new Point(Math.abs(DISTANCE),DISTANCE, Point.CARTESIAN)));
         backwards = new Path(new BezierCurve(new Point(Math.abs(DISTANCE),DISTANCE, Point.CARTESIAN), new Point(Math.abs(DISTANCE),0, Point.CARTESIAN), new Point(0,0, Point.CARTESIAN)));

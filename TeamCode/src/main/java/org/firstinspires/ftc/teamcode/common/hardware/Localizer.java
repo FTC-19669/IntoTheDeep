@@ -65,7 +65,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
     public Localizer(HardwareMap map, Pose setStartPose){
         hardwareMap = map;
         // TODO: replace this with your Pinpoint port
-        odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
+        odo = hardwareMap.get(GoBildaPinpointDriver.class,"pinpoint");
 
         //This uses mm, to use inches divide these numbers by 25.4
         odo.setOffsets(-84.0, -168.0); //these are tuned for 3110-0002-0001 Product Insight #1

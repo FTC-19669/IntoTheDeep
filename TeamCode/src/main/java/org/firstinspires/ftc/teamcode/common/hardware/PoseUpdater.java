@@ -5,9 +5,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
-import org.firstinspires.ftc.teamcode.pedroPathing.localization.localizers.TwoWheelPinpointIMULocalizer;
+import org.firstinspires.ftc.teamcode.common.hardware.Localizer;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
 
@@ -69,8 +68,7 @@ public class PoseUpdater {
      * @param hardwareMap the HardwareMap
      */
     public PoseUpdater(HardwareMap hardwareMap) {
-        // TODO: replace the second argument with your preferred localizer
-        this(hardwareMap, new TwoWheelPinpointIMULocalizer(hardwareMap));
+        this(hardwareMap, new Localizer(hardwareMap));
     }
 
     /**

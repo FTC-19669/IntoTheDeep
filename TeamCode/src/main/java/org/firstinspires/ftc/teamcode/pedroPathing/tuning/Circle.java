@@ -40,7 +40,9 @@ public class Circle extends OpMode {
      */
     @Override
     public void init() {
-        mecanumDrive = new MecanumDrive(hardwareMap);
+        mecanumDrive = new MecanumDrive();
+        mecanumDrive.initializePedro(hardwareMap);
+
 
         circle = mecanumDrive.pathBuilder()
                 .addPath(new BezierCurve(new Point(0,0, Point.CARTESIAN), new Point(RADIUS,0, Point.CARTESIAN), new Point(RADIUS, RADIUS, Point.CARTESIAN)))

@@ -23,19 +23,8 @@ public class AutonomousHelpers {
         return path;
     }
 
-    public static Path buildCurve(Pose startPose, Pose endPose, HeadingInterpolation interpolation) {
+    public static Path buildCurve(Pose startPose, Point controlPoint, Pose endPose, HeadingInterpolation interpolation) {
         Point startPoint = new Point(startPose.getX(), startPose.getY());
-        Point endPoint = new Point(endPose.getX(), endPose.getY());
-
-        Path path = new Path(new BezierCurve(startPoint, endPoint));
-        setHeadingInterpolation(path, startPose.getHeading(), endPose.getHeading(), interpolation);
-
-        return path;
-    }
-
-    public static Path buildCurve(Pose startPose, Pose controlPose, Pose endPose, HeadingInterpolation interpolation) {
-        Point startPoint = new Point(startPose.getX(), startPose.getY());
-        Point controlPoint = new Point(controlPose.getX(), controlPose.getY());
         Point endPoint = new Point(endPose.getX(), endPose.getY());
 
         Path path = new Path(new BezierCurve(startPoint, controlPoint, endPoint));
@@ -44,10 +33,8 @@ public class AutonomousHelpers {
         return path;
     }
 
-    public static Path buildCurve(Pose startPose, Pose firstControlPose, Pose secondControlPose, Pose endPose, HeadingInterpolation interpolation) {
+    public static Path buildCurve(Pose startPose, Point firstControlPoint, Point secondControlPoint, Pose endPose, HeadingInterpolation interpolation) {
         Point startPoint = new Point(startPose.getX(), startPose.getY());
-        Point firstControlPoint = new Point(firstControlPose.getX(), firstControlPose.getY());
-        Point secondControlPoint = new Point(secondControlPose.getX(), secondControlPose.getY());
         Point endPoint = new Point(endPose.getX(), endPose.getY());
 
         Path path = new Path(new BezierCurve(startPoint, firstControlPoint, secondControlPoint, endPoint));

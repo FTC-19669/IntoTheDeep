@@ -6,5 +6,5 @@ public class Configuration {
     public final String leftRear = "lr";
     public final String rightRear = "rr";
 
-    public final String odo = "odo";
+    public final String odo = "pinpoint";
 }
