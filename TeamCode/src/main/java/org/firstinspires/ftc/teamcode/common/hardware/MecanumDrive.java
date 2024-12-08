@@ -1021,7 +1021,7 @@ public class MecanumDrive {
     /**
      * This resets the IMU, if applicable.
      */
-    public void resetIMU() {
+    public void resetIMU() throws InterruptedException {
         poseUpdater.resetIMU();
     }
 }
