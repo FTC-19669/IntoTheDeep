@@ -1,32 +1,29 @@
 package org.firstinspires.ftc.teamcode.common.commands.drive;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-
 import org.firstinspires.ftc.teamcode.common.hardware.Robot;
-import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
+import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 
-public class PathCommand extends CommandBase {
+public class PathChainCommand extends CommandBase {
 
-    private final Path path;
-
+    private final PathChain pathChain;
     private final Robot robot = Robot.getInstance();
-
     private final double speed;
 
-    public PathCommand(Path path) {
-        this.path = path;
+    public PathChainCommand(PathChain pathChain) {
+        this.pathChain = pathChain;
         this.speed = 1;
     }
 
-    public PathCommand(Path path, double speed) {
-        this.path = path;
+    public PathChainCommand(PathChain pathChain, double speed) {
+        this.pathChain = pathChain;
         this.speed = speed;
     }
 
     @Override
     public void initialize() {
         robot.setMaxPower(speed);
-        robot.followPath(path, false);
+        robot.followPath(pathChain, false);
     }
 
     @Override
