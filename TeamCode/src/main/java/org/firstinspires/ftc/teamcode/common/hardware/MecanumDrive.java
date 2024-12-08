@@ -41,7 +41,6 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.FilteredPIDFController;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilter;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFController;
 
-import org.firstinspires.ftc.teamcode.common.util.Configuration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -148,8 +147,6 @@ public class MecanumDrive {
     public static boolean useCentripetal = true;
     public static boolean useHeading = true;
     public static boolean useDrive = true;
-
-    public Configuration names = new Configuration();
 
     /**
      * This initializes the follower.

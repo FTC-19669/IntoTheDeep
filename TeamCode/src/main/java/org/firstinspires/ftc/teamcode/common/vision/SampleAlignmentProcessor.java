@@ -9,7 +9,7 @@ import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.*;
 import org.opencv.imgproc.*;
 
-public class SampleAlignment implements VisionProcessor {
+public class SampleAlignmentProcessor implements VisionProcessor {
 
     private static final Scalar LOWER_YELLOW = new Scalar(20, 100, 100);
     private static final Scalar UPPER_YELLOW = new Scalar(30, 255, 255);

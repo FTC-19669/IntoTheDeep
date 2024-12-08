@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 public class Constants {
     /* TELEOP CONSTANTS */
 
-    /* AUTO/POSE CONSTANTS */
+    /* AUTO CONSTANTS */
 
     /* DRIVE CONSTANTS */
 
