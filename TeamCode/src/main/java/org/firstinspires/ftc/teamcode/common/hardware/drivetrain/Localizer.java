@@ -82,8 +82,8 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     public Localizer(HardwareMap map, Pose setStartPose) {
         // inches
-        forwardEncoderPose = new Pose(80.107/25.4 - 0.1, -72/25.4, 0);
-        strafeEncoderPose = new Pose(128.40/25.4 + 0.25, -69.253/25.4 - 0.23, Math.toRadians(90));
+        forwardEncoderPose = new Pose(80.107/25.4, -72/25.4, 0);
+        strafeEncoderPose = new Pose(128.40/25.4, -69.253/25.4, Math.toRadians(90));
 
         hardwareMap = map;
 
