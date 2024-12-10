@@ -81,6 +81,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     public Localizer(HardwareMap map, Pose setStartPose) {
         // TODO: replace these with your encoder positions
+        // inches
         forwardEncoderPose = new Pose(-18.5/25.4 - 0.1, 164.4/25.4, 0);
         strafeEncoderPose = new Pose(-107.9/25.4+0.25, -1.1/25.4-0.23, Math.toRadians(90));
 
