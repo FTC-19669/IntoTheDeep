@@ -13,10 +13,10 @@ public class Constants {
     public static String rightRearMotorName = "backRightMotor";
 
     public static String pinpoint = "pinpoint";
-
+    public static String forwardEncoderName = "leftRear";
+    public static String strafeEncoder = "strafeEncoder";
 
     /* TELEOP CONSTANTS */
-
     /* AUTO CONSTANTS */
 
     /* SERVO CONSTANTS */
