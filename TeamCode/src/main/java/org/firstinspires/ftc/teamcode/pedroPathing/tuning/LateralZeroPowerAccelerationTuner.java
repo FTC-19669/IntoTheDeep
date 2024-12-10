@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.tuning;
 
-import org.firstinspires.ftc.teamcode.common.util.Constants.*;
-
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -13,8 +11,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.common.hardware.PoseUpdater;
-import org.firstinspires.ftc.teamcode.common.hardware.DriveConstants;
+import org.firstinspires.ftc.teamcode.common.hardware.drivetrain.PoseUpdater;
+import org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants;
 import org.firstinspires.ftc.teamcode.common.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;

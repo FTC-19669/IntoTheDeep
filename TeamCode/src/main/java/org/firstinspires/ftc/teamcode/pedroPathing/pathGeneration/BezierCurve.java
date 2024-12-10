@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration;
 
 
-import org.firstinspires.ftc.teamcode.common.hardware.DriveConstants;
+import org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants;
 
 import java.util.ArrayList;
 
