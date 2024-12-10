@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
-import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.*;
+import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.HeadingInterpolation;
+import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.buildCurve;
+import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.buildLine;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.CommandScheduler;
@@ -17,22 +19,9 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 @Config
 @Autonomous(name = "0+5", preselectTeleOp = "Duo")
 public class ZeroPlusFive extends LinearOpMode {
-    public static Path lineOne; // deliverPreload
-    public static Path lineTwo;
-    public static Path lineThree;
-    public static Path lineFour;
-    public static Path lineFive;
-    public static Path lineSix;
-    public static Path lineSeven;
-    public static Path lineEight;
-    public static Path lineNine;
-    public static Path lineTen;
-    public static Path lineEleven;
-    public static Path lineTwelve;
-    public static Path lineThirteen;
-    public static Path lineFourteen;
-    public static Path lineFifteen;
-    public static Path lineSixteen;
+    public static Path lineOne, lineTwo, lineThree, lineFour, lineFive, lineSix, lineSeven,
+            lineEight, lineNine, lineTen, lineEleven, lineTwelve, lineThirteen, lineFourteen,
+            lineFifteen, lineSixteen;
 
     public void buildPaths() {
         lineOne = buildLine(
