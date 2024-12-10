@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.common.util;
+package org.firstinspires.ftc.teamcode.common.hardware;
 
 import com.acmerobotics.dashboard.config.Config;
 
@@ -21,12 +21,6 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilterParameters;
  */
 @Config
 public class DriveConstants {
-
-    // This section is for configuring your motors
-    public static String leftFrontMotorName = "frontLeftMotor";
-    public static String leftRearMotorName = "backLeftMotor";
-    public static String rightFrontMotorName = "frontRightMotor";
-    public static String rightRearMotorName = "backRightMotor";
 
     // This section is for setting the actual drive vector for the front left wheel, if the robot
     // is facing a heading of 0 radians with the wheel centered at (0,0)

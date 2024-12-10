@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.teamcode.common.hardware;
 
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.drivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.drivePIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.forwardZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.headingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.headingPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.lateralZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryDrivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryHeadingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.secondaryTranslationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.translationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.translationalPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryDrivePID;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryHeadingPID;
-import static org.firstinspires.ftc.teamcode.common.util.DriveConstants.useSecondaryTranslationalPID;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.drivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.drivePIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.forwardZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.headingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.headingPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.lateralZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.secondaryDrivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.secondaryHeadingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.secondaryTranslationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.translationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.translationalPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.useSecondaryDrivePID;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.useSecondaryHeadingPID;
+import static org.firstinspires.ftc.teamcode.common.hardware.DriveConstants.useSecondaryTranslationalPID;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -34,12 +34,13 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathCallback;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
-import org.firstinspires.ftc.teamcode.common.util.DriveConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.DashboardPoseTracker;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.Drawing;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.FilteredPIDFController;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilter;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFController;
+
+import org.firstinspires.ftc.teamcode.common.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -160,10 +161,10 @@ public class MecanumDrive {
         driveVectorScaler = new DriveVectorScaler(DriveConstants.frontLeftVector);
         poseUpdater = new PoseUpdater(hardwareMap);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, DriveConstants.leftFrontMotorName);
-        leftRear = hardwareMap.get(DcMotorEx.class, DriveConstants.leftRearMotorName);
-        rightRear = hardwareMap.get(DcMotorEx.class, DriveConstants.rightRearMotorName);
-        rightFront = hardwareMap.get(DcMotorEx.class, DriveConstants.rightFrontMotorName);
+        leftFront = hardwareMap.get(DcMotorEx.class, Constants.leftFrontMotorName);
+        leftRear = hardwareMap.get(DcMotorEx.class, Constants.leftRearMotorName);
+        rightRear = hardwareMap.get(DcMotorEx.class, Constants.rightRearMotorName);
+        rightFront = hardwareMap.get(DcMotorEx.class, Constants.rightFrontMotorName);
 
         // TODO: Make sure that this is the direction your motors need to be reversed in.
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
