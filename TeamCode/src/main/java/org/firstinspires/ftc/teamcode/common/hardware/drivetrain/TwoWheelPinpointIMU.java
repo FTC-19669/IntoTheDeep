@@ -44,7 +44,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.NanoTimer;
  * @version 1.0, 11/28/2024
  */
 @Config
-public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer {
+public class TwoWheelPinpointIMU extends org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer {
     private HardwareMap hardwareMap;
     private GoBildaPinpointDriver pinpoint;
     private Pose startPose;
@@ -69,7 +69,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      *
      * @param map the HardwareMap
      */
-    public Localizer(HardwareMap map) {
+    public TwoWheelPinpointIMU(HardwareMap map) {
         this(map, new Pose());
     }
 
@@ -80,10 +80,10 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      * @param map          the HardwareMap
      * @param setStartPose the Pose to start from
      */
-    public Localizer(HardwareMap map, Pose setStartPose) {
+    public TwoWheelPinpointIMU(HardwareMap map, Pose setStartPose) {
         // inches
-        forwardEncoderPose = new Pose(80.107/25.4, -72/25.4, 0);
-        strafeEncoderPose = new Pose(128.40/25.4, -69.253/25.4, Math.toRadians(90));
+        //forwardEncoderPose = new Pose(80.107/25.4, -72/25.4, 0);
+        //strafeEncoderPose = new Pose(128.40/25.4, -69.253/25.4, Math.toRadians(90));
 
         hardwareMap = map;
 
@@ -126,7 +126,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
     }
 
     /**
-     * This returns the current velocity estimate.
+     * This returns      the current velocity estimate.
      *
      * @return returns the current velocity estimate as a Vector
      */

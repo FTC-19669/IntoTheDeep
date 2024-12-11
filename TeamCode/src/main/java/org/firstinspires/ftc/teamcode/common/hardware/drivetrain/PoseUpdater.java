@@ -23,7 +23,7 @@ public class PoseUpdater {
 
     private IMU imu;
 
-    private Localizer localizer;
+    private TwoWheelPinpointIMU localizer;
 
     private Pose startingPose = new Pose(0,0,0);
 
@@ -50,7 +50,7 @@ public class PoseUpdater {
      * @param hardwareMap the HardwareMap
      * @param localizer the Localizer
      */
-    public PoseUpdater(HardwareMap hardwareMap, Localizer localizer) {
+    public PoseUpdater(HardwareMap hardwareMap, TwoWheelPinpointIMU localizer) {
         this.hardwareMap = hardwareMap;
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
@@ -67,7 +67,7 @@ public class PoseUpdater {
      * @param hardwareMap the HardwareMap
      */
     public PoseUpdater(HardwareMap hardwareMap) {
-        this(hardwareMap, new Localizer(hardwareMap));
+        this(hardwareMap, new TwoWheelPinpointIMU(hardwareMap));
     }
 
     /**
@@ -341,7 +341,7 @@ public class PoseUpdater {
      *
      * @return the Localizer
      */
-    public Localizer getLocalizer() {
+    public TwoWheelPinpointIMU getLocalizer() {
         return localizer;
     }
 
