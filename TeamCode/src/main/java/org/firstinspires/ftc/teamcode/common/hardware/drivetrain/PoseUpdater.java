@@ -25,7 +25,7 @@ public class PoseUpdater {
 
     private Localizer localizer;
 
-    private Pose startingPose = new Pose(0,0,0);
+    private Pose startingPose = new Pose(0, 0, 0);
 
     private Pose currentPose = startingPose;
 
@@ -346,7 +346,7 @@ public class PoseUpdater {
     }
 
     /**
-     *
+     * This resets the IMU.
      */
     public void resetIMU() throws InterruptedException {
         localizer.resetIMU();
