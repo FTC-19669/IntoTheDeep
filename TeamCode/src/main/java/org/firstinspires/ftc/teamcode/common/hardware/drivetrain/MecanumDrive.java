@@ -167,9 +167,13 @@ public class MecanumDrive {
         rightFront = hardwareMap.get(DcMotorEx.class, Constants.rightFrontMotorName);
 
         // TODO: Make sure that this is the direction your motors need to be reversed in.
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         motors = Arrays.asList(leftFront, leftRear, rightFront, rightRear);
 
