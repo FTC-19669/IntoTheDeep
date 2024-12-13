@@ -90,8 +90,8 @@ public class TwoWheelPinpointIMU extends org.firstinspires.ftc.teamcode.pedroPat
         pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, Constants.pinpoint);
         pinpoint.resetPosAndIMU();
 
-        forwardEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, Constants.forwardEncoderName));
-        strafeEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, Constants.strafeEncoder));
+        forwardEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftRear"));
+        strafeEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "strafeEncoder"));
 
         // TODO: reverse any encoders necessary
         forwardEncoder.setDirection(Encoder.REVERSE);

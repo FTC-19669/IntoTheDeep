@@ -24,7 +24,8 @@ public class AutonomousHelpers {
         return path;
     }
 
-    public static Path buildCurve(Pose startPose, Point controlPoint, Pose endPose, HeadingInterpolation interpolation) {
+    public static Path buildCurve(Pose startPose, Point controlPoint, Pose endPose,
+                                  HeadingInterpolation interpolation) {
         Point startPoint = new Point(startPose.getX(), startPose.getY());
         Point endPoint = new Point(endPose.getX(), endPose.getY());
 
@@ -34,7 +35,8 @@ public class AutonomousHelpers {
         return path;
     }
 
-    public static Path buildCurve(Pose startPose, Point firstControlPoint, Point secondControlPoint, Pose endPose, HeadingInterpolation interpolation) {
+    public static Path buildCurve(Pose startPose, Point firstControlPoint, Point secondControlPoint,
+                                  Pose endPose, HeadingInterpolation interpolation) {
         Point startPoint = new Point(startPose.getX(), startPose.getY());
         Point endPoint = new Point(endPose.getX(), endPose.getY());
 
@@ -44,7 +46,8 @@ public class AutonomousHelpers {
         return path;
     }
 
-    private static void setHeadingInterpolation(Path path, double startHeading, double endHeading, HeadingInterpolation interpolation) {
+    private static void setHeadingInterpolation(Path path, double startHeading, double endHeading,
+                                                HeadingInterpolation interpolation) {
         switch (interpolation) {
             case LINEAR:
                 path.setLinearHeadingInterpolation(startHeading, endHeading);

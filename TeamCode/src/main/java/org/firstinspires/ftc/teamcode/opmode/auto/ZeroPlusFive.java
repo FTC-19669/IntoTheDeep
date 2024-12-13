@@ -12,18 +12,19 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.common.commands.drive.PathCommand;
 import org.firstinspires.ftc.teamcode.common.hardware.Robot;
+import org.firstinspires.ftc.teamcode.common.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 
 @Config
-@Autonomous(name = "0+5", preselectTeleOp = "Duo")
+@Autonomous(name = "0+5", preselectTeleOp = "Solo")
 public class ZeroPlusFive extends LinearOpMode {
     public static Path[] paths = new Path[16];
 
     public void buildPaths() {
         paths[0] = buildLine(
-                new Pose(6.375, 65.625, 180),
+                Constants.specimenStartPose,
                 new Pose(41.063, 65.625, 180),
                 HeadingInterpolation.CONSTANT
         );
@@ -127,7 +128,7 @@ public class ZeroPlusFive extends LinearOpMode {
             CommandScheduler.getInstance().run();
         }
 
-        robot.setPose(new Pose(6.375, 65.625, 180));
+        robot.setPose(Constants.specimenStartPose);
 
         CommandScheduler.getInstance().schedule(
                 new SequentialCommandGroup(

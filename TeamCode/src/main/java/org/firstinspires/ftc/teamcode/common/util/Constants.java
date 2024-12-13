@@ -20,6 +20,14 @@ public class Constants {
 
     /* AUTO CONSTANTS */
 
+    public static Pose sampleStartPose = new Pose(6.563, 113.8, 0);
+    public static Pose bucketScorePose = new Pose(13.313, 129, 315);
+    public static Pose specimenStartPose = new Pose(6.375, 65.625, 180);
+    public static Pose specimenScorePose = new Pose(0, 0, 0);
+
+    public static Pose sampleParkPose = new Pose(0, 0, 0);
+    public static Pose specimenParkPose = new Pose(0, 0, 0);
+
     /* SERVO CONSTANTS */
 
     /* MOTOR CONSTANTS */
