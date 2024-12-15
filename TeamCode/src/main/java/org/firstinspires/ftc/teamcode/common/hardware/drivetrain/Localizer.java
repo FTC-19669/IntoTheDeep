@@ -69,7 +69,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
         pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, Constants.pinpoint);
 
         //This uses mm, to use inches divide these numbers by 25.4
-        pinpoint.setOffsets(-72, 128.4); // Check Discord for the correct values
+        pinpoint.setOffsets(-72, 128.4); // Check image Jeff for the correct values
         //TODO: If you find that the gobilda Yaw Scaling is incorrect you can edit this here
         //  odo.setYawScalar(1.0);
 
