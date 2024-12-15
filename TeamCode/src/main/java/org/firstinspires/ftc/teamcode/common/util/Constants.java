@@ -46,19 +46,21 @@ public class Constants {
 
     /* ---------------------------------SERVO CONSTANTS------------------------------------------ */
 
-    // Left PTO
-    public static double leftPTOUp = 0.659;
-    public static double leftPTODown = 0.349;
+//    // Left PTO - Old
+//    public static double leftPTOUp = 0.659;
+//    public static double leftPTODown = 0.349;
 
-    public static double leftPTODownNew = 0.3;
-    public static double leftPTOUpNew = 0.6;
+    // Left PTO
+    public static double leftPTODown = 0.3;
+    public static double leftPTOUp = 0.6;
+
+//    // Right PTO - Old
+//    public static double rightPTOUp = 0.209;
+//    public static double rightPTODown = 0.449;
 
     // Right PTO
-    public static double rightPTOUp = 0.209;
-    public static double rightPTODown = 0.449;
-
-    public static double rightPTODownNew = 0.5;
-    public static double rightPTOUpNew = 0.25;
+    public static double rightPTODown = 0.5;
+    public static double rightPTOUp = 0.25;
 
     // Low Rotate
     public static double lowRotateStraight = 0.53;
