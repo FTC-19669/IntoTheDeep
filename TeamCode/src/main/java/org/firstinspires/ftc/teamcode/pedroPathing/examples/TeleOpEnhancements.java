@@ -35,10 +35,10 @@ public class TeleOpEnhancements extends OpMode {
         mecanumDrive = new MecanumDrive();
         mecanumDrive.initializePedro(hardwareMap);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, Constants.leftFrontMotor);
-        leftRear = hardwareMap.get(DcMotorEx.class, Constants.leftRearMotor);
-        rightRear = hardwareMap.get(DcMotorEx.class, Constants.rightRearMotor);
-        rightFront = hardwareMap.get(DcMotorEx.class, Constants.rightFrontMotor);
+        leftFront = hardwareMap.get(DcMotorEx.class, Constants.leftFrontMotorName);
+        leftRear = hardwareMap.get(DcMotorEx.class, Constants.leftRearMotorName);
+        rightRear = hardwareMap.get(DcMotorEx.class, Constants.rightRearMotorName);
+        rightFront = hardwareMap.get(DcMotorEx.class, Constants.rightFrontMotorName);
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.opmode.teleop;
+package org.firstinspires.ftc.teamcode.opmode.tuning;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.common.util.Constants;
 
 
@@ -59,11 +58,11 @@ public class HangTest extends LinearOpMode {
 
             // Engage PTO
             if (gamepad1.a) {
-                leftPTO.setPosition(Constants.leftPTOUp);
-                rightPTO.setPosition(Constants.rightPTOUp);
+                leftPTO.setPosition(Constants.leftPTOUpPosition);
+                rightPTO.setPosition(Constants.rightPTOUpPosition);
             } else if (gamepad1.b) {
-                leftPTO.setPosition(Constants.leftPTODown);
-                rightPTO.setPosition(Constants.rightPTODown);
+                leftPTO.setPosition(Constants.leftPTODownPosition);
+                rightPTO.setPosition(Constants.rightPTODownPosition);
             }
 
         }

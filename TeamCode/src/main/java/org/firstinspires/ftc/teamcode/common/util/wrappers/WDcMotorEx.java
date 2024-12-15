@@ -64,7 +64,7 @@ public class WDcMotorEx {
         if (power > 0.05) {
             useEncoder = true;
             // user trying to lift up
-            if (currentPosition < this.params.maxPosition || !Globals.LIMITS) {
+            if (currentPosition < this.params.maxPosition || !Globals.limitsEnabled) {
                 usePower = true;
                 power *= this.params.upRatio;
             } else {
@@ -73,7 +73,7 @@ public class WDcMotorEx {
         } else if (power < -0.05) {
             useEncoder = true;
             // user trying to lift down
-            if (currentPosition > this.params.minPosition || !Globals.LIMITS) {
+            if (currentPosition > this.params.minPosition || !Globals.limitsEnabled) {
                 usePower = true;
                 power *= this.params.downRatio;
                 if (currentPosition > this.params.slow) {

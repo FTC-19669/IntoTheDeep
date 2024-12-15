@@ -1,14 +1,14 @@
-package org.firstinspires.ftc.teamcode.opmode.teleop;
+package org.firstinspires.ftc.teamcode.opmode.tuning;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "SlideTunerWithRunToPosition", group = "test")
-public class SlideTuner extends LinearOpMode {
+@TeleOp(name = "ExtendoTuner", group = "test")
+public class ExtendoTuner extends LinearOpMode {
 
-    private DcMotorEx slideMotor;
+    private DcMotorEx extendoLeft;
+    private DcMotorEx extendoRight;
 
     // Adjust these increments as needed
     private static final int TICK_INCREMENT = 50;      // Normal increment/decrement
@@ -20,14 +20,20 @@ public class SlideTuner extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Initialize the slide motor from the hardware map
-         slideMotor = hardwareMap.get(DcMotorEx.class, "slideMotor");
+        extendoLeft = hardwareMap.get(DcMotorEx.class, "extendoLeft");
+        extendoRight = hardwareMap.get(DcMotorEx.class, "extendoRight");
 
         // Reset encoder and set up RUN_TO_POSITION mode
-        slideMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        slideMotor.setTargetPosition(targetPosition);
-        slideMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        slideMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        slideMotor.setPower(motorPower);
+        extendoLeft.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        extendoRight.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        extendoLeft.setTargetPosition(targetPosition);
+        extendoRight.setTargetPosition(targetPosition);
+        extendoLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        extendoRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        extendoLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        extendoRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        extendoLeft.setPower(motorPower);
+        extendoRight.setPower(motorPower);
 
         waitForStart();
 
@@ -57,13 +63,17 @@ public class SlideTuner extends LinearOpMode {
             }
 
             // Set the new target position
-            slideMotor.setTargetPosition(targetPosition);
+            extendoLeft.setTargetPosition(targetPosition);
+            extendoRight.setTargetPosition(targetPosition);
 
             // Update telemetry
-            int currentPosition = slideMotor.getCurrentPosition();
-            telemetry.addData("Current Pos", currentPosition);
+            int currentLeftPosition = extendoLeft.getCurrentPosition();
+            int currentRightPosition = extendoRight.getCurrentPosition();
+            telemetry.addData("Current left Pos", currentLeftPosition);
+            telemetry.addData("Current right Pos", currentRightPosition);
             telemetry.addData("Target Pos", targetPosition);
-            telemetry.addData("Difference", targetPosition - currentPosition);
+            telemetry.addData("Difference left", targetPosition - currentLeftPosition);
+            telemetry.addData("Difference right", targetPosition - currentRightPosition);
             telemetry.addData("Power", motorPower);
             telemetry.update();
         }

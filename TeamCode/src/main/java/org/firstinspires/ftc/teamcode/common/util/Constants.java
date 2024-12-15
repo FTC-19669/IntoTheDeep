@@ -7,29 +7,29 @@ import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 public class Constants {
     /* --------------------------------------NAMES----------------------------------------------- */
 
-    public static String leftFrontMotor = "frontLeftMotor";
-    public static String leftRearMotor = "backLeftMotor";
-    public static String rightFrontMotor = "frontRightMotor";
-    public static String rightRearMotor = "backRightMotor";
+    public static String leftFrontMotorName = "frontLeftMotor";
+    public static String leftRearMotorName = "backLeftMotor";
+    public static String rightFrontMotorName = "frontRightMotor";
+    public static String rightRearMotorName = "backRightMotor";
 
-    public static String pinpoint = "pinpoint";
-    public static String forwardEncoder = "leftRear";
-    public static String strafeEncoder = "strafeEncoder";
+    public static String pinpointName = "pinpoint";
+    public static String forwardEncoderName = "leftRear";
+    public static String strafeEncoderName = "strafeEncoder";
 
-    public static String leftPTO = "leftpto";
-    public static String rightPTO = "rightpto";
+    public static String leftPtoName = "leftpto";
+    public static String rightPtoName = "rightpto";
 
-    public static String lowRotate = "lowrotate";
-    public static String lowWrist = "lowwrist";
-    public static String lowArm = "lowarm";
+    public static String lowRotateName = "lowrotate";
+    public static String lowWristName = "lowwrist";
+    public static String lowArmName = "lowarm";
 
-    public static String claw = "claw";
-    public static String highRotate = "highrotate";
-    public static String highWrist = "highwrist";
-    public static String highArm = "higharm";
+    public static String clawName = "claw";
+    public static String highRotateName = "highrotate";
+    public static String highWristName = "highwrist";
+    public static String highArmName = "higharm";
 
-    public static String extendo = "extendo";
-    public static String outtake = "outtake";
+    public static String extendoName = "extendo";
+    public static String outtakeName = "outtake";
 
     /* ---------------------------------TELEOP CONSTANTS----------------------------------------- */
 
@@ -46,100 +46,91 @@ public class Constants {
 
     /* ---------------------------------SERVO CONSTANTS------------------------------------------ */
 
-//    // Left PTO - Old
-//    public static double leftPTOUp = 0.659;
-//    public static double leftPTODown = 0.349;
-
     // Left PTO
-    public static double leftPTODown = 0.3;
-    public static double leftPTOUp = 0.6;
-
-//    // Right PTO - Old
-//    public static double rightPTOUp = 0.209;
-//    public static double rightPTODown = 0.449;
+    public static double leftPtoDownPosition = 0.3;
+    public static double leftPtoUpPosition = 0.6;
 
     // Right PTO
-    public static double rightPTODown = 0.5;
-    public static double rightPTOUp = 0.25;
+    public static double rightPtoDownPosition = 0.5;
+    public static double rightPtoUpPosition = 0.25;
 
     // Low Rotate
-    public static double lowRotateStraight = 0.53;
-    public static double lowRotateExchange = 0.53;
-    public static double lowRotateReady = 0.53;
-    public static double lowRotateDrop = 0.50;
-    public static double lowRotateGetBrick3 = 0.71;
-    public static double lowRotateBackPick = 0.0;
+    public static double lowRotateStraightPosition = 0.53;
+    public static double lowRotateExchangePosition = 0.53;
+    public static double lowRotateReadyPosition = 0.53;
+    public static double lowRotateDropPosition = 0.50;
+    public static double lowRotateGetBrick3Position = 0.71;
+    public static double lowRotateBackPickPosition = 0.0;
 
     // Low Wrist
-    public static double lowWristPick = 0.42;
-    public static double lowWristExchange = 0.649;
-    public static double lowWristReady = 0.649;
-    public static double lowWristExchangePrepare = 0.669;
-    public static double lowWristPickNear = 0.41;
+    public static double lowWristPickPosition = 0.42;
+    public static double lowWristExchangePosition = 0.649;
+    public static double lowWristReadyPosition = 0.649;
+    public static double lowWristExchangePreparePosition = 0.669;
+    public static double lowWristPickNearPosition = 0.41;
 
     // Low Arm
-    public static double lowArmPick = 0.489;
-    public static double lowArmExchange = 0.189;
-    public static double lowArmReady = 0.189;
-    public static double lowArmExchangePrepare = 0.159;
-    public static double lowArmGetBrick3 = 0.71;
-    public static double lowArmBackPick = 0.0;
+    public static double lowArmPickPosition = 0.489;
+    public static double lowArmExchangePosition = 0.189;
+    public static double lowArmReadyPosition = 0.189;
+    public static double lowArmExchangePreparePosition = 0.159;
+    public static double lowArmGetBrick3Position = 0.71;
+    public static double lowArmBackPickPosition = 0.0;
 
-    // Grip
-    public static double clawExchange = 0.37;
-    public static double clawReady = 0.52;
-    public static double clawClose = 0.63;
-    public static double clawDrop = 0.37;
-    public static double clawBeforeClose = 0.61;
-    public static double clawOpen = 0.37;
+    // Claw
+    public static double clawExchangePosition = 0.37;
+    public static double clawReadyPosition = 0.52;
+    public static double clawClosePosition = 0.63;
+    public static double clawDropPosition = 0.37;
+    public static double clawBeforeClosePosition = 0.61;
+    public static double clawOpenPosition = 0.37;
 
     // High Rotate
-    public static double highRotateExchange = 0.337;
-    public static double highRotateReady = 0.337;
-    public static double highRotateDrop = 0.618;
-    public static double highRotateGetClip = 0.618;
-    public static double highRotateHangClip = 0.618;
+    public static double highRotateExchangePosition = 0.337;
+    public static double highRotateReadyPosition = 0.337;
+    public static double highRotateDropPosition = 0.618;
+    public static double highRotateGetClipPosition = 0.618;
+    public static double highRotateHangClipPosition = 0.618;
 
     // High Wrist
-    public static double highWristExchange = 0.688;
-    public static double highWristReady = 0.688;
-    public static double highWristPullSample = 0.560;
-    public static double highWristDrop = 0.04;
-    public static double highWristThrow = 0.25;
-    public static double highWristGetClip = 0.26;
-    public static double highWristHangClip = 0.257;
-    public static double highWristHangClipDrag = 0.357;
+    public static double highWristExchangePosition = 0.688;
+    public static double highWristReadyPosition = 0.688;
+    public static double highWristPullSamplePosition = 0.560;
+    public static double highWristDropPosition = 0.04;
+    public static double highWristThrowPosition = 0.25;
+    public static double highWristGetClipPosition = 0.26;
+    public static double highWristHangClipPosition = 0.257;
+    public static double highWristHangClipDragPosition = 0.357;
 
     // High Arm
-    public static double highArmExchange = 0.91;
-    public static double highArmReady = 0.91;
-    public static double highArmPullSample = 0.22;
-    public static double highArmDrop = 0.97;
-    public static double highArmGetClip = 0.83;
-    public static double highArmHangClip = 1.00;
+    public static double highArmExchangePosition = 0.91;
+    public static double highArmReadyPosition = 0.91;
+    public static double highArmPullSamplePosition = 0.22;
+    public static double highArmDropPosition = 0.97;
+    public static double highArmGetClipPosition = 0.83;
+    public static double highArmHangClipPosition = 1.00;
 
     /* ---------------------------------MOTOR CONSTANTS------------------------------------------ */
 
     // Extendo
-    public static double extendoMax = 2700;
+    public static double extendoMaxPosition = 580;
 
     // Outtake
-    public static double outtakeMax =  2700;
-    public static double hangSpecimen = 400;
+    public static double outtakeMaxPosition = 1010;
+    public static double hangSpecimenPosition = 400;
 
     /* ---------------------------------VISION CONSTANTS----------------------------------------- */
 
     /* --------------------------------------OTHER----------------------------------------------- */
 
     public static class Globals {
-        public static boolean LIMITS = true;
-        public static boolean IS_AUTO = false;
-        public static Alliance ALLIANCE;
+        public static boolean limitsEnabled = true;
+        public static boolean isAutonomous = false;
+        public static Alliance alliance;
 
         public enum Alliance {
             RED,
             BLUE
         }
     }
-
 }
