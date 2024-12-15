@@ -47,12 +47,12 @@ public class Constants {
     /* ---------------------------------SERVO CONSTANTS------------------------------------------ */
 
     // Left PTO
-    public static double leftPtoDownPosition = 0.3;
-    public static double leftPtoUpPosition = 0.6;
+    public static double leftPTODownPosition = 0.3;
+    public static double leftPTOUpPosition = 0.6;
 
     // Right PTO
-    public static double rightPtoDownPosition = 0.5;
-    public static double rightPtoUpPosition = 0.25;
+    public static double rightPTODownPosition = 0.5;
+    public static double rightPTOUpPosition = 0.25;
 
     // Low Rotate
     public static double lowRotateStraightPosition = 0.53;
