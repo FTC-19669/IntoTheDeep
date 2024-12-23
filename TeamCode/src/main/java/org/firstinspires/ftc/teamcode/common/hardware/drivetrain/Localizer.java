@@ -5,11 +5,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
-import org.firstinspires.ftc.teamcode.common.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.GoBildaPinpointDriver;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
+import org.firstinspires.ftc.teamcode.pedroPathing.util.NanoTimer;
 
 /**
  * This is the Pinpoint class. This class extends the Localizer superclass and is a
@@ -22,18 +22,18 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
  *
  * forward on robot is the x positive direction
  *
- *                    forward (x positive)
- *                                △
- *                                |
- *                                |
- *                         /--------------\
- *                         |              |
- *                         |              |
- *                         |           || |
- *  left (y positive) <--- |           || |
- *                         |     ____     |
- *                         |     ----     |
- *                         \--------------/
+ *    /--------------\
+ *    |     ____     |
+ *    |     ----     |
+ *    | ||           |
+ *    | ||           |  ----> left (y positive)
+ *    |              |
+ *    |              |
+ *    \--------------/
+ *           |
+ *           |
+ *           V
+ *    forward (x positive)
  * With the pinpoint your readings will be used in mm
  * to use inches ensure to divide your mm value by 25.4
  * @author Logan Nash
@@ -43,9 +43,14 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
  */
 public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.localization.Localizer {
     private HardwareMap hardwareMap;
-    private GoBildaPinpointDriver pinpoint;
+    private GoBildaPinpointDriver odo;
     private double previousHeading;
     private double totalHeading;
+    private Pose startPose;
+    private long deltaTimeNano;
+    private NanoTimer timer;
+    private Pose currentVelocity;
+    private Pose previousPinpointPose;
 
     /**
      * This creates a new PinpointLocalizer from a HardwareMap, with a starting Pose at (0,0)
@@ -53,9 +58,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      *
      * @param map the HardwareMap
      */
-    public Localizer(HardwareMap map) {
-        this(map, new Pose());
-    }
+    public Localizer(HardwareMap map){ this(map, new Pose());}
 
     /**
      * This creates a new PinpointLocalizer from a HardwareMap and a Pose, with the Pose
@@ -64,23 +67,25 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      * @param map the HardwareMap
      * @param setStartPose the Pose to start from
      */
-    public Localizer(HardwareMap map, Pose setStartPose) {
+    public Localizer(HardwareMap map, Pose setStartPose){
         hardwareMap = map;
-        pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, Constants.pinpoint);
 
-        //This uses mm, to use inches divide these numbers by 25.4
-        pinpoint.setOffsets(-72, 128.4); // Check image Jeff for the correct values
-        //TODO: If you find that the gobilda Yaw Scaling is incorrect you can edit this here
-        //  odo.setYawScalar(1.0);
+        odo = hardwareMap.get(GoBildaPinpointDriver.class,"pinpoint");
 
-        pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+        setOffsets(-2.83465, 5.0551181, DistanceUnit.INCH);
 
-        //TODO: Set encoder directions
-        pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+
+        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+
         resetPinpoint();
 
         setStartPose(setStartPose);
         totalHeading = 0;
+        timer = new NanoTimer();
+        previousPinpointPose = new Pose();
+        currentVelocity = new Pose();
+        deltaTimeNano = 1;
         previousHeading = setStartPose.getHeading();
     }
 
@@ -91,8 +96,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public Pose getPose() {
-        Pose2D rawPose = pinpoint.getPosition();
-        return new Pose(rawPose.getX(DistanceUnit.INCH), rawPose.getY(DistanceUnit.INCH), rawPose.getHeading(AngleUnit.RADIANS));
+        return MathFunctions.addPoses(startPose, MathFunctions.rotatePose(previousPinpointPose, startPose.getHeading(), false));
     }
 
     /**
@@ -102,8 +106,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public Pose getVelocity() {
-        Pose2D pose = pinpoint.getVelocity();
-        return new Pose(pose.getX(DistanceUnit.INCH), pose.getY(DistanceUnit.INCH), pinpoint.getHeadingVelocity());
+        return currentVelocity.copy();
     }
 
     /**
@@ -113,10 +116,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public Vector getVelocityVector() {
-        Pose2D pose = pinpoint.getVelocity();
-        Vector returnVector = new Vector();
-        returnVector.setOrthogonalComponents(pose.getX(DistanceUnit.INCH), pose.getY(DistanceUnit.INCH));
-        return returnVector;
+        return currentVelocity.getVector();
     }
 
     /**
@@ -127,7 +127,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public void setStartPose(Pose setStart) {
-        pinpoint.setPosition(new Pose2D(DistanceUnit.INCH, setStart.getX(), setStart.getY(), AngleUnit.RADIANS, setStart.getHeading()));
+        this.startPose = setStart;
     }
 
     /**
@@ -138,7 +138,8 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public void setPose(Pose setPose) {
-        pinpoint.setPosition(new Pose2D(DistanceUnit.INCH, setPose.getX(), setPose.getY(), AngleUnit.RADIANS, setPose.getHeading()));
+        Pose setNewPose = MathFunctions.subtractPoses(setPose, startPose);
+        odo.setPosition(new Pose2D(DistanceUnit.INCH, setNewPose.getX(), setNewPose.getY(), AngleUnit.RADIANS, setNewPose.getHeading()));
     }
 
     /**
@@ -146,9 +147,16 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public void update() {
-        pinpoint.update();
-        totalHeading += MathFunctions.getSmallestAngleDifference(MathFunctions.normalizeAngle(pinpoint.getHeading()), previousHeading);
-        previousHeading = MathFunctions.normalizeAngle(pinpoint.getHeading());
+        deltaTimeNano = timer.getElapsedTime();
+        timer.resetTimer();
+        odo.update();
+        Pose2D pinpointPose = odo.getPosition();
+        Pose currentPinpointPose = new Pose(pinpointPose.getX(DistanceUnit.INCH), pinpointPose.getY(DistanceUnit.INCH), pinpointPose.getHeading(AngleUnit.RADIANS));
+        totalHeading += MathFunctions.getSmallestAngleDifference(currentPinpointPose.getHeading(), previousHeading);
+        previousHeading = currentPinpointPose.getHeading();
+        Pose deltaPose = MathFunctions.subtractPoses(currentPinpointPose, previousPinpointPose);
+        currentVelocity = new Pose(deltaPose.getX() / (deltaTimeNano / Math.pow(10.0, 9)), deltaPose.getY() / (deltaTimeNano / Math.pow(10.0, 9)), deltaPose.getHeading() / (deltaTimeNano / Math.pow(10.0, 9)));
+        previousPinpointPose = currentPinpointPose;
     }
 
     /**
@@ -168,7 +176,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public double getForwardMultiplier() {
-        return pinpoint.getEncoderY();
+        return odo.getEncoderY();
     }
 
     /**
@@ -177,7 +185,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public double getLateralMultiplier() {
-        return pinpoint.getEncoderX();
+        return odo.getEncoderX();
     }
 
     /**
@@ -186,15 +194,25 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      */
     @Override
     public double getTurningMultiplier() {
-        return pinpoint.getYawScalar();
+        return odo.getYawScalar();
     }
 
     /**
-     * This resets the IMU. Note: This does not change the estimated heading orientation.
+     * This sets the offsets and converts inches to millimeters
+     * @param xOffset How far to the side from the center of the robot is the x-pod? Use positive values if it's to the left and negative if it's to the right.
+     * @param yOffset How far forward from the center of the robot is the y-pod? Use positive values if it's forward and negative if it's to the back.
+     * @param unit The units that the measurements are given in
+     */
+    private void setOffsets(double xOffset, double yOffset, DistanceUnit unit) {
+        odo.setOffsets(unit.toMm(xOffset), unit.toMm(yOffset));
+    }
+
+    /**
+     * This resets the IMU. Does not change heading estimation.
      */
     @Override
     public void resetIMU() throws InterruptedException {
-        pinpoint.recalibrateIMU();
+        odo.recalibrateIMU();
 
         try {
             Thread.sleep(300);
@@ -207,7 +225,7 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
      * This resets the pinpoint.
      */
     private void resetPinpoint() {
-        pinpoint.resetPosAndIMU();
+        odo.resetPosAndIMU();
 
         try {
             Thread.sleep(300);

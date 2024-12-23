@@ -25,7 +25,7 @@ public class Robot extends MecanumDrive {
     public SampleAlignmentProcessor sampleAlignmentProcessor;
     private static Robot instance = null;
     public static RobotData data = new RobotData();
-    public ArrayList<WSubsystemBase> subsystems = new ArrayList<>();
+    public ArrayList<WSubsystemBase> subsystems;
 
     public void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         initializePedro(hardwareMap);
@@ -53,13 +53,13 @@ public class Robot extends MecanumDrive {
         // this.data.currentPose = this.getPose();
     }
 
-    // private void startCamera() {
-    //     sampleAlignmentProcessor = new SampleAlignmentProcessor();
-    //     visionPortal = new VisionPortal.Builder()
-    //             .addProcessor(sampleAlignmentProcessor)
-    //             .setCamera(webcam)
-    //             .build();
-    // }
+//     private void startCamera() {
+//         sampleAlignmentProcessor = new SampleAlignmentProcessor();
+//         visionPortal = new VisionPortal.Builder()
+//                 .addProcessor(sampleAlignmentProcessor)
+//                 .setCamera(webcam)
+//                 .build();
+//     }
 
     public static Robot getInstance() {
         if (instance == null) {

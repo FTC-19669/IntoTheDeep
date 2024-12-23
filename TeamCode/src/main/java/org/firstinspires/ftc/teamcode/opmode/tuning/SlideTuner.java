@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "SlideTunerWithRunToPosition", group = "test")
+@TeleOp(name = "SlideTuner", group = "test")
 public class SlideTuner extends LinearOpMode {
 
     private DcMotorEx slideMotor;

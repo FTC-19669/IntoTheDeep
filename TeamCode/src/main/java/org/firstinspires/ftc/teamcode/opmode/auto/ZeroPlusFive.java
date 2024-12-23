@@ -128,7 +128,7 @@ public class ZeroPlusFive extends LinearOpMode {
             CommandScheduler.getInstance().run();
         }
 
-        robot.setPose(Constants.specimenStartPose);
+        robot.setStartingPose(Constants.specimenStartPose);
 
         CommandScheduler.getInstance().schedule(
                 new SequentialCommandGroup(

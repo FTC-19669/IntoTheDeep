@@ -7,29 +7,28 @@ import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 public class Constants {
     /* --------------------------------------NAMES----------------------------------------------- */
 
-    public static String leftFrontMotorName = "frontLeftMotor";
-    public static String leftRearMotorName = "backLeftMotor";
-    public static String rightFrontMotorName = "frontRightMotor";
-    public static String rightRearMotorName = "backRightMotor";
+    public static final String leftFrontMotorName = "frontLeftMotor";
+    public static final String leftRearMotorName = "backLeftMotor";
+    public static final String rightFrontMotorName = "frontRightMotor";
+    public static final String rightRearMotorName = "backRightMotor";
 
-    public static String pinpointName = "pinpoint";
-    public static String forwardEncoderName = "leftRear";
-    public static String strafeEncoderName = "strafeEncoder";
+    public static final String forwardEncoderName = "leftRear";
+    public static final String strafeEncoderName = "strafeEncoder";
 
-    public static String leftPtoName = "leftpto";
-    public static String rightPtoName = "rightpto";
+    public static final String leftPtoName = "leftpto";
+    public static final String rightPtoName = "rightpto";
 
-    public static String lowRotateName = "lowrotate";
-    public static String lowWristName = "lowwrist";
-    public static String lowArmName = "lowarm";
+    public static final String lowRotateName = "lowrotate";
+    public static final String lowWristName = "lowwrist";
+    public static final String lowArmName = "lowarm";
 
-    public static String clawName = "claw";
-    public static String highRotateName = "highrotate";
-    public static String highWristName = "highwrist";
-    public static String highArmName = "higharm";
+    public static final String clawName = "claw";
+    public static final String highRotateName = "highrotate";
+    public static final String highWristName = "highwrist";
+    public static final String highArmName = "higharm";
 
-    public static String extendoName = "extendo";
-    public static String outtakeName = "outtake";
+    public static final String extendoName = "extendo";
+    public static final String outtakeName = "outtake";
 
     /* ---------------------------------TELEOP CONSTANTS----------------------------------------- */
 
