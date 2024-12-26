@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.common.util;
+package org.firstinspires.ftc.teamcode.core.util;
 
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierCurve;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierLine;

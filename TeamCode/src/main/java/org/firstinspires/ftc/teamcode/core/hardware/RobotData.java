@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.common.hardware;
+package org.firstinspires.ftc.teamcode.core.hardware;
 
 public class RobotData {
     public long loopTime = System.currentTimeMillis();

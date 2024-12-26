@@ -1,19 +1,19 @@
-package org.firstinspires.ftc.teamcode.common.hardware.drivetrain;
+package org.firstinspires.ftc.teamcode.core.hardware.drivetrain;
 
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.drivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.drivePIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.forwardZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.headingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.headingPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.lateralZeroPowerAcceleration;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.secondaryDrivePIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.secondaryHeadingPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.secondaryTranslationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.translationalPIDFFeedForward;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.translationalPIDFSwitch;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.useSecondaryDrivePID;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.useSecondaryHeadingPID;
-import static org.firstinspires.ftc.teamcode.common.hardware.drivetrain.DriveConstants.useSecondaryTranslationalPID;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.drivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.drivePIDFSwitch;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.forwardZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.headingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.headingPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.lateralZeroPowerAcceleration;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.secondaryDrivePIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.secondaryHeadingPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.secondaryTranslationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.translationalPIDFFeedForward;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.translationalPIDFSwitch;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.useSecondaryDrivePID;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.useSecondaryHeadingPID;
+import static org.firstinspires.ftc.teamcode.core.hardware.drivetrain.DriveConstants.useSecondaryTranslationalPID;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -40,7 +40,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.util.FilteredPIDFController;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.KalmanFilter;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFController;
 
-import org.firstinspires.ftc.teamcode.common.util.Constants;
+import org.firstinspires.ftc.teamcode.core.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;

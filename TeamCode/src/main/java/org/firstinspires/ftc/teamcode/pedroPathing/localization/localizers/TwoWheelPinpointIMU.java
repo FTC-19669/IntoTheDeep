@@ -4,7 +4,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.common.util.Constants;
+import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Encoder;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.GoBildaPinpointDriver;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Matrix;

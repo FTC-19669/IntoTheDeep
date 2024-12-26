@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
-import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.HeadingInterpolation;
-import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.buildCurve;
-import static org.firstinspires.ftc.teamcode.common.util.AutonomousHelpers.buildLine;
+import static org.firstinspires.ftc.teamcode.core.util.AutonomousHelpers.HeadingInterpolation;
+import static org.firstinspires.ftc.teamcode.core.util.AutonomousHelpers.buildCurve;
+import static org.firstinspires.ftc.teamcode.core.util.AutonomousHelpers.buildLine;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.CommandScheduler;
@@ -10,15 +10,15 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.common.commands.drive.PathCommand;
-import org.firstinspires.ftc.teamcode.common.hardware.Robot;
-import org.firstinspires.ftc.teamcode.common.util.Constants;
+import org.firstinspires.ftc.teamcode.core.commands.drive.PathCommand;
+import org.firstinspires.ftc.teamcode.core.hardware.Robot;
+import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 
 @Config
-@Autonomous(name = "0+5", preselectTeleOp = "Solo")
+@Autonomous(name = "0+5", group = "Auto", preselectTeleOp = "Solo")
 public class ZeroPlusFive extends LinearOpMode {
     public static Path[] paths = new Path[16];
 

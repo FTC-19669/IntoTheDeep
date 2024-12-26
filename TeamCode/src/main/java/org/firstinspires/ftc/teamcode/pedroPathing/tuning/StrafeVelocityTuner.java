@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.common.hardware.drivetrain.PoseUpdater;
-import org.firstinspires.ftc.teamcode.common.util.Constants;
+import org.firstinspires.ftc.teamcode.core.hardware.drivetrain.PoseUpdater;
+import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
 
