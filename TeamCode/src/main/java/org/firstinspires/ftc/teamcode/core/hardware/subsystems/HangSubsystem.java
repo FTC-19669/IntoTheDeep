@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.core.hardware.subsystems;
 
+import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -17,6 +18,8 @@ public class HangSubsystem extends WSubsystemBase {
     private final Servo leftPTO;
     private final Servo rightPTO;
 
+    private final PIDFController pidfController;
+
     // State Enums
     public enum HangState {
         RAISE,
@@ -32,6 +35,12 @@ public class HangSubsystem extends WSubsystemBase {
     // Current States
     public HangState hangState;
     public PTOState ptoState;
+
+    // TODO: Tune the values
+    private static final double kP = 1.0;
+    private static final double kI = 0.0;
+    private static final double kD = 0.0;
+    private static final double kF = 0.0;
 
     public HangSubsystem(HardwareMap hardwareMap, String motorOneName, String motorTwoName,
                          String motorThreeName, String motorFourName,
@@ -50,6 +59,9 @@ public class HangSubsystem extends WSubsystemBase {
         motorTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorThree.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorFour.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
+        // Initialize PIDF Controllers
+        pidfController = new PIDFController(kP, kI, kD, kF);
 
         hangState = HangState.STOP;
         ptoState = PTOState.DISENGAGED;
@@ -80,6 +92,20 @@ public class HangSubsystem extends WSubsystemBase {
         }
     }
 
+    // PIDF Motor Control
+    private void setMotorTargetPosition(DcMotorEx motor, PIDFController controller, int targetPosition) {
+        double currentPosition = motor.getCurrentPosition();
+        double power = controller.calculate(currentPosition, targetPosition);
+        motor.setPower(power);
+    }
+
+    public void setTargetPosition(int targetPosition) {
+        setMotorTargetPosition(motorOne, pidfController, targetPosition);
+        setMotorTargetPosition(motorTwo, pidfController, targetPosition);
+        setMotorTargetPosition(motorThree, pidfController, targetPosition);
+        setMotorTargetPosition(motorFour, pidfController, targetPosition);
+    }
+
     // Periodic Updates
     @Override
     public void periodic() {
@@ -89,10 +115,10 @@ public class HangSubsystem extends WSubsystemBase {
         // Handle Hang State
         switch (hangState) {
             case RAISE:
-                setAllMotorsPower(1.0);
+                setTargetPosition(1000); // Example position
                 break;
             case LOWER:
-                setAllMotorsPower(-1.0);
+                setTargetPosition(-1000); // Example position
                 break;
             case STOP:
                 setAllMotorsPower(0.0);
