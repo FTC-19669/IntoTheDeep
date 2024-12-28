@@ -106,10 +106,10 @@ public class Constants {
 
     /* ---------------------------------MOTOR CONSTANTS------------------------------------------ */
 
-    // Extendo
+    // Horizontal Extendo
     public static final double extendoMaxPosition = 590;
 
-    // Outtake
+    // Vertical Extendo
     public static final double outtakeMaxPosition = 1010;
     public static final double hangSpecimenPosition = 400;
 
