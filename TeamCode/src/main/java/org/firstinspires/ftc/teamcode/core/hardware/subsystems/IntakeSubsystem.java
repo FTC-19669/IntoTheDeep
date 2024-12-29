@@ -19,9 +19,9 @@ public class IntakeSubsystem extends WSubsystemBase {
     private final Servo wristServo;
 
     public IntakeState intakeState;
-    public ArmState armState;
-    public PivotState pivotState;
-    public WristState wristState;
+    public SystemState armState;
+    public SystemState pivotState;
+    public SystemState wristState;
 
     public enum IntakeState {
         INTAKE,
@@ -29,21 +29,7 @@ public class IntakeSubsystem extends WSubsystemBase {
         STOP
     }
 
-    public enum PivotState {
-        PICK,
-        EXCHANGE,
-        READY,
-        EXCHANGE_PREPARE
-    }
-
-    public enum WristState {
-        PICK,
-        EXCHANGE,
-        READY,
-        EXCHANGE_PREPARE
-    }
-
-    public enum ArmState {
+    public enum SystemState {
         PICK,
         EXCHANGE,
         READY,
@@ -62,9 +48,9 @@ public class IntakeSubsystem extends WSubsystemBase {
         this.wristServo = hardwareMap.get(Servo.class, wrist);
 
         intakeState = IntakeState.STOP;
-        armState = ArmState.READY;
-        pivotState = PivotState.READY;
-        wristState = WristState.READY;
+        armState = SystemState.READY;
+        pivotState = SystemState.READY;
+        wristState = SystemState.READY;
 
         Robot.getInstance().subsystems.add(this);
     }
@@ -104,11 +90,11 @@ public class IntakeSubsystem extends WSubsystemBase {
         rollerServo.setPosition(position);
     }
 
-    public void setPivotState(PivotState state) {
+    public void setPivotState(SystemState state) {
         this.pivotState = state;
     }
 
-    public void setPivotPosition(PivotState state) {
+    public void setPivotPosition(SystemState state) {
         switch (state) {
             case PICK:
                 pivotServo.setPosition(Constants.rotateStraightPosition);
@@ -125,11 +111,11 @@ public class IntakeSubsystem extends WSubsystemBase {
         }
     }
 
-    public void setWristState(WristState state) {
+    public void setWristState(SystemState state) {
         this.wristState = state;
     }
 
-    public void setWristPosition(WristState state) {
+    public void setWristPosition(SystemState state) {
         switch (state) {
             case PICK:
                 wristServo.setPosition(Constants.wristPickPosition);
@@ -146,11 +132,11 @@ public class IntakeSubsystem extends WSubsystemBase {
         }
     }
 
-    public void setArmState(ArmState state) {
+    public void setArmState(SystemState state) {
         this.armState = state;
     }
 
-    public void setArmPosition(ArmState state) {
+    public void setArmPosition(SystemState state) {
         switch (state) {
             case PICK:
                 rollerServo.setPosition(Constants.armPickPosition);
@@ -165,6 +151,12 @@ public class IntakeSubsystem extends WSubsystemBase {
                 rollerServo.setPosition(Constants.armExchangePreparePosition);
                 break;
         }
+    }
+
+    public void setSystemState(SystemState systemState) {
+        this.armState = systemState;
+        this.pivotState = systemState;
+        this.wristState = systemState;
     }
 
     @Override

@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.core.hardware.subsystems.HangSubsystem;
+import org.firstinspires.ftc.teamcode.core.hardware.subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.core.hardware.subsystems.OuttakeSubsystem;
 import org.firstinspires.ftc.teamcode.core.util.wrappers.WSubsystemBase;
 import org.firstinspires.ftc.vision.VisionPortal;
 
@@ -26,6 +29,9 @@ public class Robot extends MecanumDrive {
     private static Robot instance = null;
     public static RobotData data = new RobotData();
     public ArrayList<WSubsystemBase> subsystems = new ArrayList<>();
+    public IntakeSubsystem intake;
+    public HangSubsystem hang;
+    public OuttakeSubsystem outtake;
 
     public void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         initializePedro(hardwareMap);
