@@ -11,24 +11,20 @@ public class Constants {
     public static final String leftRearMotorName = "backLeftMotor";
     public static final String rightFrontMotorName = "frontRightMotor";
     public static final String rightRearMotorName = "backRightMotor";
-
-    public static final String forwardEncoderName = "leftRear";
-    public static final String strafeEncoderName = "strafeEncoder";
+    public static final String extendoMotorName = "extendo";
+    public static final String outtakeMotorOneName = "outtakeOne";
+    public static final String outtakeMotorTwoName = "outtakeTwo";
 
     public static final String leftPtoName = "leftpto";
     public static final String rightPtoName = "rightpto";
-
-    public static final String lowRotateName = "lowrotate";
-    public static final String lowWristName = "lowwrist";
-    public static final String lowArmName = "lowarm";
-
-    public static final String clawName = "claw";
-    public static final String highRotateName = "highrotate";
-    public static final String highWristName = "highwrist";
-    public static final String highArmName = "higharm";
-
-    public static final String extendoName = "extendo";
-    public static final String outtakeName = "outtake";
+    public static final String intakeName = "intake";
+    public static final String lowYawServoName = "lowyaw";
+    public static final String lowPivotServoName = "lowpivot";
+    public static final String lowerArmServoName = "lowarm";
+    public static final String clawServoName = "claw";
+    public static final String highYawServoName = "highyaw";
+    public static final String highPivotServoName = "highpivot";
+    public static final String highArmServoName = "higharm";
 
     /* ---------------------------------TELEOP CONSTANTS----------------------------------------- */
 
@@ -53,6 +49,7 @@ public class Constants {
     public static final double rightPTODownPosition = 0.5;
     public static final double rightPTOUpPosition = 0.25;
 
+    /* TODO: RENAME ALL OF THIS */
     // Rotate
     public static final double rotateStraightPosition = 0.53;
     public static final double rotateExchangePosition = 0.53;

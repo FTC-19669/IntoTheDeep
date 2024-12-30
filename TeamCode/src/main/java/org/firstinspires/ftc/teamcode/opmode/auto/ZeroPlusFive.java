@@ -10,7 +10,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.core.commands.drive.PathCommand;
+import org.firstinspires.ftc.teamcode.core.commands.drive.FollowPathCommand;
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
@@ -132,22 +132,22 @@ public class ZeroPlusFive extends LinearOpMode {
 
         CommandScheduler.getInstance().schedule(
                 new SequentialCommandGroup(
-                        new PathCommand(paths[0]),
-                        new PathCommand(paths[1]),
-                        new PathCommand(paths[2]),
-                        new PathCommand(paths[3]),
-                        new PathCommand(paths[4]),
-                        new PathCommand(paths[5]),
-                        new PathCommand(paths[6]),
-                        new PathCommand(paths[7]),
-                        new PathCommand(paths[8]),
-                        new PathCommand(paths[9]),
-                        new PathCommand(paths[10]),
-                        new PathCommand(paths[11]),
-                        new PathCommand(paths[12]),
-                        new PathCommand(paths[13]),
-                        new PathCommand(paths[14]),
-                        new PathCommand(paths[15])
+                        new FollowPathCommand(paths[0]),
+                        new FollowPathCommand(paths[1]),
+                        new FollowPathCommand(paths[2]),
+                        new FollowPathCommand(paths[3]),
+                        new FollowPathCommand(paths[4]),
+                        new FollowPathCommand(paths[5]),
+                        new FollowPathCommand(paths[6]),
+                        new FollowPathCommand(paths[7]),
+                        new FollowPathCommand(paths[8]),
+                        new FollowPathCommand(paths[9]),
+                        new FollowPathCommand(paths[10]),
+                        new FollowPathCommand(paths[11]),
+                        new FollowPathCommand(paths[12]),
+                        new FollowPathCommand(paths[13]),
+                        new FollowPathCommand(paths[14]),
+                        new FollowPathCommand(paths[15])
                 )
         );
 

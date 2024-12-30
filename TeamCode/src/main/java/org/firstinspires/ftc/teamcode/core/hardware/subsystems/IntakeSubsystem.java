@@ -11,46 +11,32 @@ import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.core.util.wrappers.WSubsystemBase;
 
 public class IntakeSubsystem extends WSubsystemBase {
-
     private final DcMotorEx extensionMotor;
     private final CRServoImplEx intakeServo;
-    private final Servo rollerServo;
+    private final Servo yawServo;
     private final Servo pivotServo;
-    private final Servo wristServo;
-
-    public IntakeState intakeState;
-    public SystemState armState;
-    public SystemState pivotState;
-    public SystemState wristState;
+    private final Servo armServo;
 
     public enum IntakeState {
         INTAKE,
         TRANSFER,
         STOP
     }
+    public IntakeState intakeState;
 
-    public enum SystemState {
-        PICK,
-        EXCHANGE,
-        READY,
-        EXCHANGE_PREPARE
-    }
+    public IntakeSubsystem(HardwareMap hardwareMap) {
+        extensionMotor = hardwareMap.get(DcMotorEx.class, Constants.extendoMotorName);
+        extensionMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        extensionMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-    public IntakeSubsystem(HardwareMap hardwareMap, String extMotor, String intake, String roller,
-                           String pivot, String wrist) {
-        this.extensionMotor = hardwareMap.get(DcMotorEx.class, extMotor);
-        this.extensionMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        this.extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        this.intakeServo = hardwareMap.get(CRServoImplEx.class, intake);
-        this.rollerServo = hardwareMap.get(Servo.class, roller);
-        this.pivotServo = hardwareMap.get(Servo.class, pivot);
-        this.wristServo = hardwareMap.get(Servo.class, wrist);
+        intakeServo = hardwareMap.get(CRServoImplEx.class, Constants.intakeName);
+        yawServo = hardwareMap.get(Servo.class, Constants.lowYawServoName);
+        pivotServo = hardwareMap.get(Servo.class, Constants.lowPivotServoName);
+        armServo = hardwareMap.get(Servo.class, Constants.lowerArmServoName);
 
         intakeState = IntakeState.STOP;
-        armState = SystemState.READY;
-        pivotState = SystemState.READY;
-        wristState = SystemState.READY;
+        // TODO: Set the initial position of the servos
 
         Robot.getInstance().subsystems.add(this);
     }
@@ -86,82 +72,20 @@ public class IntakeSubsystem extends WSubsystemBase {
         intakeServo.setPower(0);
     }
 
-    public void setRollerPosition(double position) {
-        rollerServo.setPosition(position);
+    public void setYawPosition(double position) {
+        yawServo.setPosition(position);
     }
 
-    public void setPivotState(SystemState state) {
-        this.pivotState = state;
+    public void setPivotPosition(double position) {
+        pivotServo.setPosition(position);
     }
 
-    public void setPivotPosition(SystemState state) {
-        switch (state) {
-            case PICK:
-                pivotServo.setPosition(Constants.rotateStraightPosition);
-                break;
-            case EXCHANGE:
-                pivotServo.setPosition(Constants.rotateExchangePosition);
-                break;
-            case READY:
-                pivotServo.setPosition(Constants.rotateReadyPosition);
-                break;
-            case EXCHANGE_PREPARE:
-                pivotServo.setPosition(Constants.rotateDropPosition);
-                break;
-        }
-    }
-
-    public void setWristState(SystemState state) {
-        this.wristState = state;
-    }
-
-    public void setWristPosition(SystemState state) {
-        switch (state) {
-            case PICK:
-                wristServo.setPosition(Constants.wristPickPosition);
-                break;
-            case EXCHANGE:
-                wristServo.setPosition(Constants.wristExchangePosition);
-                break;
-            case READY:
-                wristServo.setPosition(Constants.wristReadyPosition);
-                break;
-            case EXCHANGE_PREPARE:
-                wristServo.setPosition(Constants.wristExchangePreparePosition);
-                break;
-        }
-    }
-
-    public void setArmState(SystemState state) {
-        this.armState = state;
-    }
-
-    public void setArmPosition(SystemState state) {
-        switch (state) {
-            case PICK:
-                rollerServo.setPosition(Constants.armPickPosition);
-                break;
-            case EXCHANGE:
-                rollerServo.setPosition(Constants.armExchangePosition);
-                break;
-            case READY:
-                rollerServo.setPosition(Constants.armReadyPosition);
-                break;
-            case EXCHANGE_PREPARE:
-                rollerServo.setPosition(Constants.armExchangePreparePosition);
-                break;
-        }
-    }
-
-    public void setSystemState(SystemState systemState) {
-        this.armState = systemState;
-        this.pivotState = systemState;
-        this.wristState = systemState;
+    public void setArmPosition(double position) {
+        armServo.setPosition(position);
     }
 
     @Override
     public void periodic() {
-        // Intake State
         switch (intakeState) {
             case INTAKE:
                 intakeServo.setPower(1.0);
@@ -173,14 +97,5 @@ public class IntakeSubsystem extends WSubsystemBase {
                 intakeServo.setPower(0.0);
                 break;
         }
-
-        // Pivot State
-        setPivotPosition(pivotState);
-
-        // Wrist State
-        setWristPosition(wristState);
-
-        // Arm State
-        setArmPosition(armState);
     }
 }

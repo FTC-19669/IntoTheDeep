@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode.core.hardware;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.core.hardware.subsystems.HangSubsystem;
 import org.firstinspires.ftc.teamcode.core.hardware.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.core.hardware.subsystems.OuttakeSubsystem;
+import org.firstinspires.ftc.teamcode.core.hardware.subsystems.PTOSubsystem;
+import org.firstinspires.ftc.teamcode.core.hardware.subsystems.VisionSubsystem;
 import org.firstinspires.ftc.teamcode.core.util.wrappers.WSubsystemBase;
 import org.firstinspires.ftc.vision.VisionPortal;
 
@@ -19,7 +19,6 @@ import org.firstinspires.ftc.teamcode.core.vision.SampleAlignmentProcessor;
 import java.util.ArrayList;
 
 public class Robot extends MecanumDrive {
-
     public Telemetry telemetry;
     private ElapsedTime runtime = new ElapsedTime();
     public WebcamName webcam;
@@ -30,8 +29,9 @@ public class Robot extends MecanumDrive {
     public static RobotData data = new RobotData();
     public ArrayList<WSubsystemBase> subsystems = new ArrayList<>();
     public IntakeSubsystem intake;
-    public HangSubsystem hang;
     public OuttakeSubsystem outtake;
+    public PTOSubsystem pto;
+    public VisionSubsystem vision;
 
     public void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         initializePedro(hardwareMap);
@@ -72,5 +72,4 @@ public class Robot extends MecanumDrive {
         }
         return instance;
     }
-
 }
