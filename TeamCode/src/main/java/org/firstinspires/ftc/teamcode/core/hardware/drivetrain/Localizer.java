@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
 import org.firstinspires.ftc.teamcode.pedroPathing.util.NanoTimer;
+import org.opencv.core.Mat;
 
 /**
  * This is the Pinpoint class. This class extends the Localizer superclass and is a
@@ -72,7 +73,11 @@ public class Localizer extends org.firstinspires.ftc.teamcode.pedroPathing.local
 
         odo = hardwareMap.get(GoBildaPinpointDriver.class,"pinpoint");
 
-        setOffsets(-2.83465, 5.0551181, DistanceUnit.INCH);
+        //The default units are inches, but you can swap the units if you wish.
+        setOffsets(-2.83465, 5.0551181, DistanceUnit.INCH); // Check Discord for the offsets
+
+        //TODO: Tune if needed
+        // odo.setYawScalar(1.0);
 
         odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
 
