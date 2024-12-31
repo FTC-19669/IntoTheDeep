@@ -56,6 +56,14 @@ public class IntakeSubsystem extends WSubsystemBase {
         return extensionMotor.getCurrentPosition();
     }
 
+    public double getYawPosition() {
+        return yawServo.getPosition();
+    }
+
+    public void resetExtensionEncoder() {
+        extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
     public void stopExtension() {
         extensionMotor.setPower(0);
     }
