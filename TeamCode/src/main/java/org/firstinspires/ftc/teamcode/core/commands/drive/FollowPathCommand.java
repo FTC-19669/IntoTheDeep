@@ -4,29 +4,30 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
+import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 
 public class FollowPathCommand extends CommandBase {
 
-    private final Path path;
+    private final PathChain pathChain;
 
     private final Robot robot = Robot.getInstance();
 
     private final double speed;
 
-    public FollowPathCommand(Path path) {
-        this.path = path;
+    public FollowPathCommand(Path... paths) {
+        this.pathChain = new PathChain(paths);
         this.speed = 1;
     }
 
-    public FollowPathCommand(Path path, double speed) {
-        this.path = path;
+    public FollowPathCommand(double speed, Path... paths) {
         this.speed = speed;
+        this.pathChain = new PathChain(paths);
     }
 
     @Override
     public void initialize() {
         robot.setMaxPower(speed);
-        robot.followPath(path, false);
+        robot.followPath(pathChain, true);
     }
 
     @Override
