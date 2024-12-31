@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.core.vision;
+package org.firstinspires.ftc.teamcode.core.hardware.subsystems.vision;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

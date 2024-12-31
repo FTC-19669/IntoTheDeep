@@ -1,16 +1,45 @@
 package org.firstinspires.ftc.teamcode.core.hardware;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
+
 public class RobotData {
     public long loopTime = System.currentTimeMillis();
+
+    public Pose currentPose = new Pose(0,0, Math.toRadians(0));
 
     public boolean scoringSample = false;
     public boolean scoringSpecimen = false;
 
     public boolean sampleLoaded = false;
     public boolean specimenLoaded = false;
-    
+
     public boolean intakingSample = false;
     public boolean intakingSpecimen = false;
+
+
+    // TODO: Add hardware data as variable and to write() method
+    public void write(Telemetry telemetry) {
+        telemetry.addData("Loop Time:", System.currentTimeMillis() - loopTime);
+        loopTime = System.currentTimeMillis();
+
+        telemetry.addLine();
+
+        telemetry.addData("Pose:", currentPose);
+        telemetry.addData("Busy:", Robot.getInstance().isBusy());
+
+        telemetry.addLine();
+
+        telemetry.addData("Scoring Sample", scoringSample);
+        telemetry.addData("Scoring Specimen", scoringSpecimen);
+        telemetry.addData("Sample Loaded", sampleLoaded);
+        telemetry.addData("Specimen Loaded", specimenLoaded);
+        telemetry.addData("Intaking Sample", intakingSample);
+        telemetry.addData("Intaking Specimen", intakingSpecimen);
+
+        telemetry.update();
+    }
+
 
     public void startScoringSample() {
         scoringSample = true;
