@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode.core.commands.actions.intake;
+package org.firstinspires.ftc.teamcode.core.commands.subsystem.outtake;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 
-public class IntakeAdjustYawCommand extends CommandBase {
-    double adjust;
-    public IntakeAdjustYawCommand(double adjust) {
-        this.adjust = adjust;
+public class OuttakeSetYawCommand extends CommandBase {
+    double position;
+    public OuttakeSetYawCommand(double position) {
+        this.position = position;
         addRequirements();
     }
 
@@ -17,8 +17,7 @@ public class IntakeAdjustYawCommand extends CommandBase {
 
     @Override
     public void execute() {
-        double yaw = Robot.getInstance().intake.getYawPosition();
-        Robot.getInstance().intake.setYawPosition(yaw+adjust);
+        Robot.getInstance().outtake.setYawPosition(position);
     }
 
     @Override

@@ -97,8 +97,16 @@ public class OuttakeSubsystem extends WSubsystemBase {
         yawServo.setPosition(position);
     }
 
+    public double getYawPosition() {
+        return yawServo.getPosition();
+    }
+
     public void setPivotPosition(double position) {
         pivotServo.setPosition(position);
+    }
+
+    public double getPivotPosition() {
+        return pivotServo.getPosition();
     }
 
     public void setArmPosition(double position) {

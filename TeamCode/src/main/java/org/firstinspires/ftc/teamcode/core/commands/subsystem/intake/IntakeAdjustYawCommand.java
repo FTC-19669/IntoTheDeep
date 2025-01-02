@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode.core.commands.actions.intake;
+package org.firstinspires.ftc.teamcode.core.commands.subsystem.intake;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 
-public class ExtendResetCommand extends CommandBase {
-    public ExtendResetCommand() {
+public class IntakeAdjustYawCommand extends CommandBase {
+    double adjust;
+    public IntakeAdjustYawCommand(double adjust) {
+        this.adjust = adjust;
         addRequirements();
     }
 
@@ -15,7 +17,8 @@ public class ExtendResetCommand extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.getInstance().intake.resetExtensionEncoder();
+        double yaw = Robot.getInstance().intake.getYawPosition();
+        Robot.getInstance().intake.setYawPosition(yaw+adjust);
     }
 
     @Override

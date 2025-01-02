@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.core.commands.actions.intake;
+package org.firstinspires.ftc.teamcode.core.commands.subsystem.intake;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 import org.firstinspires.ftc.teamcode.core.hardware.subsystems.IntakeSubsystem;
 
-public class GrabSampleCommand extends CommandBase {
-    public GrabSampleCommand() {
+public class GrabCommand extends CommandBase {
+    public GrabCommand() {
         addRequirements();
     }
 

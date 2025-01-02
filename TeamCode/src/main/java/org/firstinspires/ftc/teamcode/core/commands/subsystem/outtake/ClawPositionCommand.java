@@ -1,13 +1,14 @@
-package org.firstinspires.ftc.teamcode.core.commands.actions;
+package org.firstinspires.ftc.teamcode.core.commands.subsystem.outtake;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
-import org.firstinspires.ftc.teamcode.core.hardware.subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.core.util.Constants;
 
-public class TransferCommand extends CommandBase {
-    public TransferCommand() {
+public class ClawPositionCommand extends CommandBase {
+    double position;
+    public ClawPositionCommand(double position) {
+        this.position = position;
         addRequirements();
     }
 
@@ -17,6 +18,7 @@ public class TransferCommand extends CommandBase {
 
     @Override
     public void execute() {
+        Robot.getInstance().outtake.setClawPosition(position);
     }
 
     @Override

@@ -1,13 +1,11 @@
-package org.firstinspires.ftc.teamcode.core.commands.actions;
+package org.firstinspires.ftc.teamcode.core.commands.subsystem.intake;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
-import org.firstinspires.ftc.teamcode.core.hardware.subsystems.IntakeSubsystem;
 
-public class TransferCommand extends CommandBase {
-    public TransferCommand() {
+public class ExtendResetCommand extends CommandBase {
+    public ExtendResetCommand() {
         addRequirements();
     }
 
@@ -17,6 +15,7 @@ public class TransferCommand extends CommandBase {
 
     @Override
     public void execute() {
+        Robot.getInstance().intake.resetExtensionEncoder();
     }
 
     @Override
