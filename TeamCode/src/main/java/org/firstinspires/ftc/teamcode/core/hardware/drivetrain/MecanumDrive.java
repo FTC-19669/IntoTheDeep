@@ -179,7 +179,11 @@ public class MecanumDrive {
         }
 
         for (DcMotorEx motor : motors) {
-            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            if (Constants.Globals.isAuto) {
+                motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            } else {
+                motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            }
         }
 
         dashboardPoseTracker = new DashboardPoseTracker(poseUpdater);

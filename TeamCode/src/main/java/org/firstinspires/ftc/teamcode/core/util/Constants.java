@@ -107,10 +107,20 @@ public class Constants {
     public static final double extendoMaxPosition = 590;
 
     // Vertical Extendo
-    public static final double outtakeMaxPosition = 1010;
+    public static final double outtakeMaxPosition = 1025;
     public static final double hangSpecimenPosition = 400;
 
     /* ---------------------------------VISION CONSTANTS----------------------------------------- */
 
     /* ---------------------------------OTHER CONSTANTS------------------------------------------- */
+
+    public static class Globals {
+        public static boolean isAuto = true;
+
+        public enum AllianceColor {
+            RED,
+            BLUE,
+        }
+        public static AllianceColor allianceColor = AllianceColor.RED;
+    }
 }

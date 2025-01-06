@@ -8,26 +8,26 @@ import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 
 public class FollowPathCommand extends CommandBase {
 
-    private final PathChain pathChain;
+    private final PathChain path;
 
     private final Robot robot = Robot.getInstance();
 
     private final double speed;
 
     public FollowPathCommand(Path... paths) {
-        this.pathChain = new PathChain(paths);
+        this.path = new PathChain(paths);
         this.speed = 1;
     }
 
     public FollowPathCommand(double speed, Path... paths) {
         this.speed = speed;
-        this.pathChain = new PathChain(paths);
+        this.path = new PathChain(paths);
     }
 
     @Override
     public void initialize() {
         robot.setMaxPower(speed);
-        robot.followPath(pathChain, true);
+        robot.followPath(path, true);
     }
 
     @Override
@@ -38,11 +38,10 @@ public class FollowPathCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return Thread.currentThread().isInterrupted() || !robot.isBusy();
-    }
+        double xError = Math.abs(robot.getPose().getX() - path.getPath(0).getLastControlPoint().getX());
+        double yError = Math.abs(robot.getPose().getY() - path.getPath(0).getLastControlPoint().getY());
+        double headingError = Math.abs(robot.getPose().getHeading() - path.getPath(0).getHeadingGoal(1));
 
-    @Override
-    public void end(boolean interrupted) {
-        robot.setMaxPower(1);
+        return xError < 1 && yError < 1 && headingError < 2;
     }
 }

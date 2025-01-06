@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.core.commands.actions;
 
 
-public class TransferCommand {
-
+public class OuttakeEjectCommand {
 }
