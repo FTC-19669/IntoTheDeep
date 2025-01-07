@@ -41,6 +41,15 @@ public class IntakeSubsystem extends WSubsystemBase {
         Robot.getInstance().subsystems.add(this);
     }
 
+    @Override
+    public void updateData() {
+        Robot.getInstance().data.extensionPosition = extensionMotor.getCurrentPosition();
+        Robot.getInstance().data.intakeState = intakeState;
+        Robot.getInstance().data.intakeYawServoPosition = yawServo.getPosition();
+        Robot.getInstance().data.intakePitchServoPosition = pitchServo.getPosition();
+        Robot.getInstance().data.intakeArmServoPosition = armServo.getPosition();
+    }
+
     public void setExtensionPosition(int targetPosition, double power) {
         extensionMotor.setTargetPosition(targetPosition);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);

@@ -50,6 +50,15 @@ public class OuttakeSubsystem extends WSubsystemBase {
         Robot.getInstance().subsystems.add(this);
     }
 
+    public void updateData() {
+        Robot.getInstance().data.outtakeMotorOnePosition = motorOne.getCurrentPosition();
+        Robot.getInstance().data.outtakeMotorTwoPosition = motorTwo.getCurrentPosition();
+        Robot.getInstance().data.outtakeClawServoPosition = clawServo.getPosition();
+        Robot.getInstance().data.outtakeYawServoPosition = yawServo.getPosition();
+        Robot.getInstance().data.outtakePitchServoPosition = pitchServo.getPosition();
+        Robot.getInstance().data.outtakeArmServoPosition = armServo.getPosition();
+    }
+
     public void moveSlidesToPosition(int targetPosition) {
         motorOne.setTargetPosition(targetPosition);
         motorTwo.setTargetPosition(targetPosition);

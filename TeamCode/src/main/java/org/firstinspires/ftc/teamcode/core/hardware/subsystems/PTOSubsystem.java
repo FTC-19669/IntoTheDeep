@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.core.hardware.subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.core.hardware.Robot;
 import org.firstinspires.ftc.teamcode.core.util.Constants;
 import org.firstinspires.ftc.teamcode.core.util.wrappers.WSubsystemBase;
@@ -25,6 +24,13 @@ public class PTOSubsystem extends WSubsystemBase {
         ptoState = PTOState.DISENGAGED;
 
         Robot.getInstance().subsystems.add(this);
+    }
+
+    @Override
+    public void updateData() {
+        Robot.getInstance().data.ptoState = ptoState;
+        Robot.getInstance().data.leftPTOPosition = leftPTO.getPosition();
+        Robot.getInstance().data.rightPTOPosition = rightPTO.getPosition();
     }
 
     // Set PTO Servo Positions

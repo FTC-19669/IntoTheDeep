@@ -22,7 +22,7 @@ public class Robot extends MecanumDrive {
     private static Robot instance = null;
     public static RobotData data = new RobotData();
 
-    public ArrayList<WSubsystemBase> subsystems;
+    public ArrayList<WSubsystemBase> subsystems = new ArrayList<>();
     public IntakeSubsystem intake;
     public OuttakeSubsystem outtake;
     public PTOSubsystem pto;
