@@ -14,7 +14,7 @@ public class IntakeSubsystem extends WSubsystemBase {
     private final DcMotorEx extensionMotor;
     private final CRServoImplEx intakeServo;
     private final Servo yawServo;
-    private final Servo pivotServo;
+    private final Servo pitchServo;
     private final Servo armServo;
 
     public enum IntakeState {
@@ -32,7 +32,7 @@ public class IntakeSubsystem extends WSubsystemBase {
 
         intakeServo = hardwareMap.get(CRServoImplEx.class, Constants.intakeName);
         yawServo = hardwareMap.get(Servo.class, Constants.lowYawServoName);
-        pivotServo = hardwareMap.get(Servo.class, Constants.lowPivotServoName);
+        pitchServo = hardwareMap.get(Servo.class, Constants.lowPivotServoName);
         armServo = hardwareMap.get(Servo.class, Constants.lowerArmServoName);
 
         intakeState = IntakeState.STOP;
@@ -84,8 +84,8 @@ public class IntakeSubsystem extends WSubsystemBase {
         yawServo.setPosition(position);
     }
 
-    public void setPivotPosition(double position) {
-        pivotServo.setPosition(position);
+    public void setPitchPosition(double position) {
+        pitchServo.setPosition(position);
     }
 
     public void setArmPosition(double position) {

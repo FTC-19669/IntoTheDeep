@@ -15,7 +15,7 @@ public class OuttakeSubsystem extends WSubsystemBase {
     private final DcMotorEx motorTwo;
     private final Servo clawServo;
     private final Servo yawServo;
-    private final Servo pivotServo;
+    private final Servo pitchServo;
     private final Servo armServo;
 
     private final PIDFController pidfController;
@@ -32,7 +32,7 @@ public class OuttakeSubsystem extends WSubsystemBase {
 
         clawServo = hardwareMap.get(Servo.class, Constants.clawServoName);
         yawServo = hardwareMap.get(Servo.class, Constants.highYawServoName);
-        pivotServo = hardwareMap.get(Servo.class, Constants.highPivotServoName);
+        pitchServo = hardwareMap.get(Servo.class, Constants.highPivotServoName);
         armServo = hardwareMap.get(Servo.class, Constants.highArmServoName);
 
         motorOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -97,8 +97,8 @@ public class OuttakeSubsystem extends WSubsystemBase {
         yawServo.setPosition(position);
     }
 
-    public void setPivotPosition(double position) {
-        pivotServo.setPosition(position);
+    public void setPitchPosition(double position) {
+        pitchServo.setPosition(position);
     }
 
     public void setArmPosition(double position) {
@@ -113,8 +113,8 @@ public class OuttakeSubsystem extends WSubsystemBase {
         return yawServo.getPosition();
     }
 
-    public double getPivotPosition() {
-        return pivotServo.getPosition();
+    public double getPitchPosition() {
+        return pitchServo.getPosition();
     }
 
     public double getArmPosition() {
