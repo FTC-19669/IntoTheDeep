@@ -11,6 +11,12 @@ public class VisionSubsystem {
         INACTIVE
     }
 
+    public enum DetectedColor {
+        RED,
+        BLUE,
+        YELLOW
+    }
+
     public VisionSubsystem(Limelight3A limelight) {
         this.limelight = limelight;
     }

@@ -22,7 +22,7 @@ public class Robot extends MecanumDrive {
     private static Robot instance = null;
     public static RobotData data = new RobotData();
 
-    public ArrayList<WSubsystemBase> subsystems = new ArrayList<>();
+    public ArrayList<WSubsystemBase> subsystems;
     public IntakeSubsystem intake;
     public OuttakeSubsystem outtake;
     public PTOSubsystem pto;
@@ -32,6 +32,7 @@ public class Robot extends MecanumDrive {
         initializePedro(hardwareMap);
         CommandScheduler.getInstance().reset();
         this.telemetry = telemetry;
+        subsystems = new ArrayList<>();
 
         intake = new IntakeSubsystem(hardwareMap);
         outtake = new OuttakeSubsystem(hardwareMap);
